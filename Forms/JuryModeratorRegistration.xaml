@@ -1,0 +1,112 @@
+﻿<Window x:Class="practice.Forms.JuryModeratorRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:practice.Forms"
+        mc:Ignorable="d"
+        Title="JuryModeratorRegistration" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Регистрация жюри/модератора" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52*"/>
+                <ColumnDefinition Width="48*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Id Number:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ФИО:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Пол:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Роль:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Email:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Телефон:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Направление:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="Мероприятие:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="5 0 5 20"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Margin="5 0 5 20"/>
+                <ComboBox  Grid.Row="2" Grid.Column="1" Margin="5 0 5 20">
+                    <ComboBoxItem Content="Мужской"/>
+                    <ComboBoxItem Content="Не мужской"/>
+                </ComboBox>
+                <ComboBox  Grid.Row="3" Grid.Column="1" Margin="5 0 5 20">
+                    <ComboBoxItem Content="Жюри"/>
+                    <ComboBoxItem Content="Модератор"/>
+                </ComboBox>
+                <TextBox  Grid.Row="4" Grid.Column="1" Margin="5 0 5 20"/>
+                <xctk:MaskedTextBox  Grid.Row="5" Grid.Column="1" Margin="5 0 5 20" Mask="+7(000)-000-00-00"
+                              TextChanged="TextBox_TextChanged"/>
+                <TextBox  Grid.Row="6" Grid.Column="1" Margin="5 2 5 2"/>
+                <Grid Grid.Row="7" Grid.Column="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="80*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" Margin="50 3 0 0"/>
+                    <TextBlock Grid.Column="1" Text="Прикрепить к мероприятию" Foreground="DimGray" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                </Grid>
+                <ComboBox  Grid.Row="8" Grid.Column="1" Margin="5 0 5 20">
+                </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" Text="Пароль:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" />
+                <TextBlock Grid.Row="2" Text="Повтор пароля:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" />
+                <CheckBox x:Name="pass_check" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" Checked="pass_check_Checked" Click="pass_check_Click"/>
+                <Border Grid.Row="0" Grid.Column="1" Margin="0 4 10 20" BorderBrush="DarkGray" BorderThickness="1">
+                    <Image />
+                </Border>
+                <TextBox x:Name="passBoxTxt2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" Text="Password" FontSize="16" Foreground="DarkGray" Visibility="Hidden"/>
+                <PasswordBox x:Name="passBox2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" Password="Password" PasswordChar="*" FontSize="16" Foreground="DarkGray"/>
+                <TextBox x:Name="passBoxTxt" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" Text="Re-enter password" FontSize="16" Foreground="DarkGray" Visibility="Hidden"/>
+                <PasswordBox x:Name="passBox" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" Password="Re-enter password" PasswordChar="*" FontSize="16" Foreground="DarkGray"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="Видимый Пароль" VerticalAlignment="Center" Margin="5 0 0 0 " FontSize="16" Foreground="DimGray"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="0 0 5 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Content="Ок" FontSize="16" FontWeight="Bold"/>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="5 0 0 0">
+                <Button Background="Transparent" BorderBrush="Transparent" Content="Отмена" FontSize="16" FontWeight="Bold"/>
+            </Border>
+            
+        </Grid>
+    </Grid>
+</Window>
