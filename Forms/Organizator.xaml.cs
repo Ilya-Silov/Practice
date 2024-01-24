@@ -29,5 +29,30 @@ namespace practice.Forms
             JuryModeratorRegistration registration = new JuryModeratorRegistration();
             registration.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Profile profile = new Profile();
+            profile.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Participant participant = new Participant();
+            participant.ShowDialog();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            EventWindow eventWindow = new EventWindow();
+            eventWindow.ShowDialog();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Autorization autorization = new Autorization(); 
+            autorization.Show();
+            this.Close();
+        }
     }
 }

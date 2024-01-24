@@ -8,7 +8,7 @@
         xmlns:ui="clr-namespace:ReCaptcha.Desktop.WPF.UI;assembly=ReCaptcha.Desktop.WPF"
         xmlns:themes="clr-namespace:ReCaptcha.Desktop.WPF.UI.Themes;assembly=ReCaptcha.Desktop.WPF"
         mc:Ignorable="d"
-        Title="Captcha" Height="400" Width="450" WindowStartupLocation="CenterScreen">
+        Title="Captcha" Height="400" Width="450" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -80,7 +80,7 @@
         <easy:Captcha Grid.Row="1" Grid.Column="1"  x:Name="MyCaptcha" Margin="20 0 20 0"/>
         <!--<ui:ReCaptcha Grid.Row="1" Grid.Column="1" x:Name="sus" Title="123"></ui:ReCaptcha>-->
         
-        <TextBox x:Name="txtCapt" Grid.Row="3" Grid.Column="1"  Margin="20 0 20 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"/>
+        <TextBox x:Name="txtCapt" Grid.Row="3" Grid.Column="1"  Margin="20 0 20 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" PreviewTextInput="txtCapt_PreviewTextInput"/>
         <Border x:Name="brdCapt"  Grid.Column="1" Grid.Row="5"  Margin="50 5 50 5" BorderThickness="1" BorderBrush="black" CornerRadius="25" MouseEnter="brdCapt_MouseEnter" MouseLeave="brdCapt_MouseLeave">
             <Button x:Name="btnCapt" Style="{DynamicResource ButtonStyle1}" Grid.Row="5" Grid.Column="1" Content="Проверить" FontSize="20" Background="Transparent" BorderBrush="Transparent" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Click="btnCapt_Click" />
         </Border>

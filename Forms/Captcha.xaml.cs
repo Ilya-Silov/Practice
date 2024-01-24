@@ -74,5 +74,10 @@ namespace practice.Forms
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
+        private void txtCapt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            
+        }
     }
 }

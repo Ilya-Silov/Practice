@@ -6,7 +6,60 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:practice.Forms"
         mc:Ignorable="d"
-        Title="JuryModeratorRegistration" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="JuryModeratorRegistration" Height="450" Width="800" Icon="/пципиа.png" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Cursor" TargetName="border" Value="Hand"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -43,8 +96,8 @@
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Телефон:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
                 <TextBlock Grid.Row="6" Grid.Column="0" Text="Направление:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
                 <TextBlock Grid.Row="8" Grid.Column="0" Text="Мероприятие:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-                <TextBox  Grid.Row="0" Grid.Column="1" Margin="5 0 5 20"/>
-                <TextBox  Grid.Row="1" Grid.Column="1" Margin="5 0 5 20"/>
+                <TextBox  Grid.Row="0" Grid.Column="1" Margin="5 0 5 20" IsEnabled="False"/>
+                <TextBox  Grid.Row="1" Grid.Column="1" Margin="5 0 5 20" PreviewTextInput="TextBox_PreviewTextInput"/>
                 <ComboBox  Grid.Row="2" Grid.Column="1" Margin="5 0 5 20">
                     <ComboBoxItem Content="Мужской"/>
                     <ComboBoxItem Content="Не мужской"/>
@@ -100,11 +153,11 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="1" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="0 0 5 0">
-                <Button Background="Transparent" BorderBrush="Transparent" Content="Ок" FontSize="16" FontWeight="Bold"/>
+            <Border Grid.Column="1" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="0 0 5 5">
+                <Button Style="{DynamicResource ButtonStyle1}" Background="Transparent" BorderBrush="Transparent" Content="Ок" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
             </Border>
-            <Border Grid.Column="2" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="5 0 0 0">
-                <Button Background="Transparent" BorderBrush="Transparent" Content="Отмена" FontSize="16" FontWeight="Bold"/>
+            <Border Grid.Column="2" BorderBrush="DimGray" BorderThickness="1" CornerRadius="7" Margin="5 0 0 5">
+                <Button Style="{DynamicResource ButtonStyle1}" Background="Transparent" BorderBrush="Transparent" Content="Отмена" FontSize="16" FontWeight="Bold" Click="Button_Click_1"/>
             </Border>
             
         </Grid>
