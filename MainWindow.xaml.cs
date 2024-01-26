@@ -14,12 +14,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using practice.Parser;
 using practice.Forms;
+using Wpf.Ui.Controls;
+
 namespace practice
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : UiWindow
     {
         public MainWindow()
         {
@@ -33,29 +35,6 @@ namespace practice
             autorization.ShowDialog();
             this.Close();
         }
-
-        private void mainBtnAuth_MouseEnter(object sender, MouseEventArgs e)
-        {
-            mainBtnAuth.Foreground = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-
-        }
-
-        private void mainBtnAuth_MouseLeave(object sender, MouseEventArgs e)
-        {
-            mainBtnAuth.Foreground = new SolidColorBrush(Colors.Black);
-
-        }
-
-        private void mainBrdAuth_MouseEnter(object sender, MouseEventArgs e)
-        {
-            mainBrdAuth.BorderBrush = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-
-        }
-
-        private void mainBrdAuth_MouseLeave(object sender, MouseEventArgs e)
-        {
-            mainBrdAuth.BorderBrush = new SolidColorBrush(Colors.Black);
-
-        }
+    
     }
 }

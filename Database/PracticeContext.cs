@@ -23,5 +23,9 @@ namespace practice.Database
         {
             optionsBuilder.UseNpgsql("Server=hnt8.ru;Port=5432;Database=AKVTCommonPractice;UserID=admin;Password=admin");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("ne-trogat");
+        }
     }
 }

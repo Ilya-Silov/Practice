@@ -12,45 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui.Controls;
+
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Autorization.xaml
     /// </summary>
-    public partial class Autorization : Window
+    public partial class Autorization : UiWindow
     {
         public Autorization()
         {
             InitializeComponent();
         }
 
-        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void brdAuth_MouseEnter(object sender, MouseEventArgs e)
-        {
-            brdAuth.BorderBrush = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-
-        }
-
-        private void brdAuth_MouseLeave(object sender, MouseEventArgs e)
-        {
-            brdAuth.BorderBrush = new SolidColorBrush(Colors.Black);
-        }
-
-        private void btnAuth_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnAuth.Foreground = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-
-        }
-
-        private void btnAuth_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnAuth.Foreground = new SolidColorBrush(Colors.Black);
-
-        }
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {

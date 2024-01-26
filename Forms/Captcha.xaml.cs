@@ -18,13 +18,14 @@ using ReCaptcha.Desktop.WPF.Client.Interfaces;
 using ReCaptcha.Desktop.WPF.Configuration;
 using ReCaptcha.Desktop.WPF.UI;
 using System.Threading;
+using Wpf.Ui.Controls;
 
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Captcha.xaml
     /// </summary>
-    public partial class Captcha : Window
+    public partial class Captcha : UiWindow
     {
         public Captcha()
         {
@@ -42,25 +43,7 @@ namespace practice.Forms
             return await reCaptcha.VerifyAsync(cts.Token);
         }
 
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnCapt.Foreground = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-        }
-
-        private void Button_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnCapt.Foreground = new SolidColorBrush(Colors.Black);
-        }
-
-        private void brdCapt_MouseEnter(object sender, MouseEventArgs e)
-        {
-            brdCapt.BorderBrush = new SolidColorBrush(Color.FromRgb(126, 180, 234));
-        }
-
-        private void brdCapt_MouseLeave(object sender, MouseEventArgs e)
-        {
-            brdCapt.BorderBrush = new SolidColorBrush(Colors.Black);
-        }
+      
 
         private void btnCapt_Click(object sender, RoutedEventArgs e)
         {
@@ -71,13 +54,5 @@ namespace practice.Forms
             }
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void txtCapt_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            
-        }
     }
 }
