@@ -6,14 +6,15 @@ namespace practice.Database
     public class PracticeContext : DbContext
     {
 
-        public DbSet<ActivitiesInformationSecurity> ActivitiesInformationSecurity { get; set; }
-        public DbSet<City> City { get; set; }
+       
+        public DbSet<City> Cites { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Direction> Directions { get; set; }
-        public DbSet<ActionJury> ActionJury { get; set; }
+        public DbSet<ActivityJury> ActivityJures { get; set; }
         public DbSet<Activity> Activites { get; set; }
         public DbSet<Ivent> Ivents { get; set; }
         public DbSet<User> Users{ get; set; }
+        public DbSet<Role> Roles { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
