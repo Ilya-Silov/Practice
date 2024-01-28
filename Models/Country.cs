@@ -13,6 +13,5 @@ namespace practice.Models
 
         public string Code { get; set; }
 
-        public int CodeNumber { get; set; }
     }
 }

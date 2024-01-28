@@ -18,7 +18,7 @@ namespace practice.Models
 
         public DateTime TimeBegin { get; set; }
 
-        public string ModeratorName { get; set; }
+        public int ModeratorId { get; set; }
         public User Moderator { get; set; }
 
         public int IventId { get; set; }
