@@ -9,9 +9,6 @@ namespace practice.Models
 {
     public class ActivityJury
     {
-
-        public int Id { get; set; }
-
         public int JuryID { get; set; }
         public User Jury { get; set; }
         
