@@ -28,7 +28,7 @@ namespace practice.Parser
                 string[] temp = line.Split(';');
                 list.Add(
                     new City() {
-                        CityName = temp[1],
+                        Name = temp[1],
                     });
             }
         }

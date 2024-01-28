@@ -10,6 +10,6 @@ namespace practice.Models
 
         public string HyperAddress { get; set; }
 
-        public string CityName { get; set; }
+        public string Name { get; set; }
     }
 }
