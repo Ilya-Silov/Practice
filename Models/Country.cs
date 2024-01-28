@@ -7,12 +7,10 @@ namespace practice.Models
     {
         public int Id { get; set; }
 
-        public string CountryName { get; set; }
+        public string Name { get; set; }
 
-        public string CountryEngName { get; set; }
+        public string EngName { get; set; }
 
-        public string Code { get; set; }
-
-        public int CodeNumber { get; set; }
+        public string Acronym { get; set; }
     }
 }

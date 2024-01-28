@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using practice.Database;
@@ -11,9 +12,11 @@ using practice.Database;
 namespace practice.Migrations
 {
     [DbContext(typeof(PracticeContext))]
-    partial class PracticeContextModelSnapshot : ModelSnapshot
+    [Migration("20240128154956_asdawdd")]
+    partial class asdawdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,6 +110,13 @@ namespace practice.Migrations
                     b.Property<string>("Acronym")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("CodeNumber")
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .IsRequired()
