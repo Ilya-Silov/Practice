@@ -22,7 +22,7 @@ namespace practice.Database
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("ne-trogat");
+            modelBuilder.HasDefaultSchema("silov-barinov-maltsev");
         }
     }
 }
