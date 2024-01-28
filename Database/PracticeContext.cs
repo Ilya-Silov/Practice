@@ -10,13 +10,10 @@ namespace practice.Database
         public DbSet<City> City { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Direction> Directions { get; set; }
-        public DbSet<Moderator> Moderators { get; set; }
-        public DbSet<Organizers> Organizers { get; set; }
-        public DbSet<Participant> Participants { get; set; }
-        public DbSet<Jury> Jury { get; set; }
         public DbSet<ActionJury> ActionJury { get; set; }
-        public DbSet<Action> Action { get; set; }
-        public DbSet<Ivent> Ivent { get; set; }
+        public DbSet<Activity> Activites { get; set; }
+        public DbSet<Ivent> Ivents { get; set; }
+        public DbSet<User> Users{ get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

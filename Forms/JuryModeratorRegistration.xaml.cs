@@ -12,12 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui.Controls;
+
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для JuryModeratorRegistration.xaml
     /// </summary>
-    public partial class JuryModeratorRegistration : Window
+    public partial class JuryModeratorRegistration : UiWindow
     {
         public JuryModeratorRegistration()
         {
@@ -54,10 +56,7 @@ namespace practice.Forms
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

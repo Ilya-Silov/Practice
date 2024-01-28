@@ -12,12 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui.Controls;
+
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Organizator.xaml
     /// </summary>
-    public partial class Organizator : Window
+    public partial class Organizator : UiWindow
     {
         public Organizator()
         {

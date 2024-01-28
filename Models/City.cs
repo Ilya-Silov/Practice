@@ -5,13 +5,11 @@ namespace practice.Models
 {
     public class City
     {
-        [Required]
+
         public int Id { get; set; }
 
-        [Required]
         public string HyperAddress { get; set; }
 
-        [Required]
         public string CityName { get; set; }
     }
 }

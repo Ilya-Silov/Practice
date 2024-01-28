@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace practice.Models
 {
-    public class ActionJury
+    public class ActivityJury
     {
-        [Required]
+
         public int Id { get; set; }
 
-        [Required]
         public int JuryID { get; set; }
-        public Jury Jury { get; set; }
+        public User Jury { get; set; }
         
-        public int? ActionId { get; set; }
-        public Action Action { get; set; }
+        public int ActivityId { get; set; }
+        public Activity Activity { get; set; }
     }
 }

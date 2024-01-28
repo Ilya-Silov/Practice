@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using practice.Parser;
 using practice.Forms;
 using Wpf.Ui.Controls;
+using practice.Database;
+using practice.Models;
 
 namespace practice
 {
@@ -23,10 +25,15 @@ namespace practice
     /// </summary>
     public partial class MainWindow : UiWindow
     {
+        PracticeContext db;
         public MainWindow()
         {
+            db = new PracticeContext();
             InitializeComponent();
-            Parser.Parser.ParseCity();
+            //List <Activity> actions = new List <Activity> ();
+            //actions = db.Activity.ToList();
+            //Actions.ItemsSource = actions;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
