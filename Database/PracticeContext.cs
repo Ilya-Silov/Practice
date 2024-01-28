@@ -5,8 +5,6 @@ namespace practice.Database
 {
     public class PracticeContext : DbContext
     {
-
-       
         public DbSet<City> Cites { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Direction> Directions { get; set; }
