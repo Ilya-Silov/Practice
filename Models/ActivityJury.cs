@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace practice.Models
 {
-    [PrimaryKey("JuryID", "ActivityId")]
+    [PrimaryKey("Id")]
     public class ActivityJury
     {
-        
+        public int Id { get; set; }
+
         public int JuryID { get; set; }
         public User Jury { get; set; }
 

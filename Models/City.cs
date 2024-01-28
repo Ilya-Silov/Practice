@@ -8,8 +8,6 @@ namespace practice.Models
 
         public int Id { get; set; }
 
-        public string HyperAddress { get; set; }
-
         public string Name { get; set; }
     }
 }

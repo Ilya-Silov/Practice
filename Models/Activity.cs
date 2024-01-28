@@ -23,5 +23,6 @@ namespace practice.Models
 
         public int IventId { get; set; }
         public Ivent Ivent { get; set; }
+
     }
 }

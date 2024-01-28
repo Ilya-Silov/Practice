@@ -21,28 +21,35 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Column="0" Source="/пципиа.png"/>
-            <Button  x:Name="mainBtnAuth" Content="Авторизация" Click="Button_Click" />
+            <Button  Grid.Column="1" x:Name="mainBtnAuth" Content="Авторизация" Click="Button_Click" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="1*" MaxWidth="320"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <ItemsControl x:Name="Actions" Margin=" 0 0 5 0" >
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding ActionName}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <Grid Grid.Column="0" Margin="10 0 10 0">
+                <ScrollViewer>
+                    <ItemsControl x:Name="Ivents" Margin=" 0 0 5 0" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Grid.Row="0" Grid.Column="1" Margin="0 5 0 0" Padding="10 5 10 10" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="5">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="WrapWithOverflow"/>
+                                        <TextBlock Text="{Binding DateBegin, ConverterCulture='ru-RU', StringFormat= {}{0:D}}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </Grid>
             <StackPanel Grid.Column="1">
                 <TextBlock Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-                <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="По направлению"/>
-                <ComboBox MaxHeight="50"/>
-                <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="По дате"/>
-                <ComboBox MaxHeight="50"/>
+                <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="Мероприятие"/>
+                <ComboBox x:Name="SortNameIvents" SelectionChanged="SortNameIvents_SelectionChanged" MaxHeight="50" />
+                <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="Дата проведения"/>
+                <ComboBox x:Name="SortDateIvents" SelectionChanged="SortDateIvents_SelectionChanged" MaxHeight="50" />
             </StackPanel>
         </Grid>
     </Grid>

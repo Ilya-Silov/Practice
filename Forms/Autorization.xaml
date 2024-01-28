@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:practice.Forms"
         Background="#212121"
         mc:Ignorable="d"
-        Title="Autorization" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
+        Title="Autorization" MinHeight="700" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
 
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +31,11 @@
         <TextBox x:Name="txtID" Grid.Column="1" Grid.Row="3" Margin="5 10 5 10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="password_PreviewTextInput"/>
         <TextBlock Grid.Column="1" Grid.Row="4" Text="Пароль" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0"/>
         <TextBox x:Name="password"  Grid.Column="1" Grid.Row="5" Margin="5 10 5 10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="btnAuth" Grid.Column="1" Grid.Row="7" Content="Войти" FontSize="20" Click="btnAuth_Click"/>
+        <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center"  >
+            <Button x:Name="btnAuth"  Content="Войти" FontSize="20" Click="btnAuth_Click" />
+            <Button x:Name="btnAuth_1"  Content="Назад" Margin="20 0 0 0" FontSize="20" Click="btnAuth_Click_1" />
+        </StackPanel>
+        
     </Grid>
     
 </ui:UiWindow>
