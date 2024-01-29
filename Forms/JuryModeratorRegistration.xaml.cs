@@ -1,4 +1,6 @@
-﻿using practice.Database;
+﻿using Microsoft.IdentityModel.Tokens;
+
+using practice.Database;
 using practice.Models;
 
 using System;
@@ -18,6 +20,8 @@ using System.Windows.Shapes;
 
 using Wpf.Ui.Controls;
 
+using MessageBox = System.Windows.MessageBox;
+
 namespace practice.Forms
 {
     /// <summary>
@@ -29,7 +33,6 @@ namespace practice.Forms
         List<Role> roles = new();
         List<string> strRoles;
         User user = new User();
-        List<Ivent> ivents = new List<Ivent>();
         public JuryModeratorRegistration()
         {
             db = new PracticeContext();
@@ -39,10 +42,12 @@ namespace practice.Forms
             {
                 strRoles.Add(role.Name);
             }
-            ivents = db.Ivents.ToList();
             InitializeComponent();
+            VisibilityCB(Visibility.Collapsed);
             RoleCB.ItemsSource = strRoles;
-            DataContext = this;
+            IventCB.ItemsSource = GetIvents();
+
+
 
         }
         public ObservableCollection<Ivent> GetIvents()
@@ -50,11 +55,11 @@ namespace practice.Forms
             return new ObservableCollection<Ivent>(
                     db.Ivents.ToList<Ivent>());
         }
-        private void pass_check_Checked(object sender, RoutedEventArgs e)
+        public ObservableCollection<Activity> GetActivites()
         {
-
+            return new ObservableCollection<Activity>(
+                    db.Activites.Where(p=> p.IventId == IventCB.SelectedIndex+1).ToList<Activity>());
         }
-
         private void pass_check_Click(object sender, RoutedEventArgs e)
         {
             if (pass_check.IsChecked == true)
@@ -96,8 +101,32 @@ namespace practice.Forms
             user.Email = EmailTxt.Text;
             user.Password = passBox.Password;
 
-            db.Users.Add(user);
-            db.SaveChanges();
+            if (Check())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+            else 
+            {
+                MessageBox.Show(
+        "Заполните все поля",
+        "Сообщение");
+            }
+   
+
+            //switch (user.RoleId)
+            //{
+            //    case 3:
+            //        {
+            //            ActivityJury activityJury = new ActivityJury();
+            //            activityJury.Id = db.ActivityJures.Max(x => x.Id)+1;
+            //            activityJury.JuryID = user.Id;
+            //            activityJury.ActivityId = db.Activites.Where(x => x.Name == ActivityCB.SelectedItem.ToString()).FirstOrDefault().ID;
+            //            db.ActivityJures.Add(activityJury);
+            //            break;
+            //        }
+            //}
+            //db.SaveChanges();
 
         }
 
@@ -113,25 +142,51 @@ namespace practice.Forms
                 case 0: 
                     {
                         user.RoleId = RoleCB.SelectedIndex + 1;
+                        VisibilityCB(Visibility.Visible);
                         break;
                     }
                 case 1:
                     {
                         user.RoleId = RoleCB.SelectedIndex + 1;
+                        VisibilityCB(Visibility.Visible);
                         break;
+
                     }
                 case 2:
                     {
                         user.RoleId = RoleCB.SelectedIndex + 1;
+                        VisibilityCB(Visibility.Visible);
                         break;
                     }
                 case 3:
                     {
                         user.RoleId = RoleCB.SelectedIndex + 1;
+                        VisibilityCB(Visibility.Collapsed);
+
                         break;
                     }
             }
 
+        }
+        private bool Check() 
+        {
+            if (SurnameTxt.Text.IsNullOrEmpty() || 
+                NameTxt.Text.IsNullOrEmpty() || 
+                PatronomicTxt.Text.IsNullOrEmpty() || 
+                PhoneTxt.Text.IsNullOrEmpty() || 
+                EmailTxt.Text.IsNullOrEmpty() || 
+                passBox.Password.IsNullOrEmpty())
+            {
+                return false;
+            }
+            return true;
+        }
+        private void VisibilityCB (Visibility visibility) 
+        {
+            IventCB.Visibility = visibility;
+            ActivityCB.Visibility = visibility;
+            IventTxt.Visibility = visibility;
+            ActivityTxt.Visibility = visibility;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,6 +204,12 @@ namespace practice.Forms
                         break;
                     }
             }
+        }
+
+        private void IventCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var activites = GetActivites();
+            ActivityCB.ItemsSource = activites;
         }
     }
 }
