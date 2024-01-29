@@ -18,6 +18,8 @@ using Wpf.Ui.Controls;
 using practice.Database;
 using practice.Models;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace practice
 {
@@ -25,8 +27,7 @@ namespace practice
     public partial class MainWindow : UiWindow
     {
         PracticeContext db;
-        List<string> strings = new List<string>() { "A-Я", "Я-А" };
-        List<string> strings2 = new List<string>() { "По возрастанию", "По убыванию" };
+        List<string> strings = new List<string>() { "A-Я", "Я-А", "По возрастанию", "По убыванию" };
         List<Ivent> ivents = new List<Ivent>();
 
         public MainWindow()
@@ -40,10 +41,6 @@ namespace practice
 
 
             SortNameIvents.ItemsSource = strings;
-            SortDateIvents.ItemsSource = strings2;
-
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,30 +52,35 @@ namespace practice
 
         private void SortNameIvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SortNameIvents.SelectedItem == strings[0] )
+            switch(SortNameIvents.SelectedItem)
             {
-                ivents = db.Ivents.OrderBy(p=>p.Name).ToList();
-                Ivents.ItemsSource = ivents;
-            }
-            if (SortNameIvents.SelectedItem == strings[1])
-            {
-                ivents = db.Ivents.OrderByDescending(p => p.Name).ToList();
-                Ivents.ItemsSource = ivents;
-            }
-        }
+                case "A-Я":
+                    {
+                        ivents = db.Ivents.OrderBy(p => p.Name).ToList();
+                        Ivents.ItemsSource = ivents;
+                        break;
+                    }
+                case "Я-А":
+                    {
+                        ivents = db.Ivents.OrderByDescending(p => p.Name).ToList();
+                        Ivents.ItemsSource = ivents;
+                        break;
+                    }
+                case "По возрастанию":
+                    {
+                        ivents = db.Ivents.OrderBy(p => p.DateBegin).ToList();
+                        Ivents.ItemsSource = ivents;
+                        break;
+                    }
+                case "По убыванию":
+                    {
+                        ivents = db.Ivents.OrderByDescending(p => p.DateBegin).ToList();
+                        Ivents.ItemsSource = ivents;
+                        break;
+                    }
 
-        private void SortDateIvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SortDateIvents.SelectedItem == strings2[0])
-            {
-                ivents = db.Ivents.OrderBy(p => p.DateBegin).ToList();
-                Ivents.ItemsSource = ivents;
             }
-            if (SortDateIvents.SelectedItem == strings2[1])
-            {
-                ivents = db.Ivents.OrderByDescending(p => p.DateBegin).ToList();
-                Ivents.ItemsSource = ivents;
-            }
+            
         }
     }
 }

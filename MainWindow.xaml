@@ -48,8 +48,6 @@
                 <TextBlock Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
                 <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="Мероприятие"/>
                 <ComboBox x:Name="SortNameIvents" SelectionChanged="SortNameIvents_SelectionChanged" MaxHeight="50" />
-                <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="Дата проведения"/>
-                <ComboBox x:Name="SortDateIvents" SelectionChanged="SortDateIvents_SelectionChanged" MaxHeight="50" />
             </StackPanel>
         </Grid>
     </Grid>
