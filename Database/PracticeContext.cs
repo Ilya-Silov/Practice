@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+
+using Microsoft.EntityFrameworkCore;
 using practice.Models;
 
 namespace practice.Database
@@ -21,6 +23,9 @@ namespace practice.Database
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+        .Property(p => p.Id).UseIdentityAlwaysColumn()
+        .ValueGeneratedOnAdd();
             modelBuilder.HasDefaultSchema("silov-barinov-maltsev");
         }
     }
