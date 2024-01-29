@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using practice.Database;
@@ -11,9 +12,11 @@ using practice.Database;
 namespace practice.Migrations
 {
     [DbContext(typeof(PracticeContext))]
-    partial class PracticeContextModelSnapshot : ModelSnapshot
+    [Migration("20240128164301_dsd")]
+    partial class dsd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,9 +43,6 @@ namespace practice.Migrations
                     b.Property<int>("ModeratorId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ModeratorName")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -61,23 +61,15 @@ namespace practice.Migrations
 
             modelBuilder.Entity("practice.Models.ActivityJury", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("JuryID")
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivityId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("JuryID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
+                    b.HasKey("JuryID", "ActivityId");
 
                     b.HasIndex("ActivityId");
-
-                    b.HasIndex("JuryID");
 
                     b.ToTable("ActivityJures", "silov-barinov-maltsev");
                 });
@@ -89,6 +81,10 @@ namespace practice.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HyperAddress")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()

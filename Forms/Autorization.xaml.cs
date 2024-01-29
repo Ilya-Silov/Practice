@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+
+using practice.Database;
+using practice.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,23 +26,14 @@ namespace practice.Forms
     /// </summary>
     public partial class Autorization : UiWindow
     {
+        PracticeContext db;
         public Autorization()
         {
+            db = new PracticeContext();
             InitializeComponent();
         }
 
 
-        private void btnAuth_Click(object sender, RoutedEventArgs e)
-        {
-            Captcha captcha = new Captcha();
-            captcha.ShowDialog();
-            if(password.Text == "1")
-            {
-                Organizator organizator = new Organizator();
-                organizator.Show();
-                this.Close();
-            }
-        }
 
 
         private void password_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -47,5 +43,42 @@ namespace practice.Forms
                 e.Handled = true;
             }
         }
+
+        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            Captcha captcha = new Captcha();
+            captcha.ShowDialog();
+            if (SignUp())
+            {
+                Organizator organizator = new Organizator();
+                organizator.Show();
+                this.Close();
+            }
+            else 
+            {
+                
+            }
+        }
+
+        private void btnAuth_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private bool SignUp()
+        {
+            if (txtID.Text.IsNullOrEmpty() || password.Text.IsNullOrEmpty())
+            {
+                return false;
+            }
+            User user = db.Users.Where(p => p.Id == Convert.ToInt32(txtID.Text)).FirstOrDefault();
+          
+            if (user!=null && password.Text == user.Password )
+            {
+                return true;
+            }
+            return false;
+        }
+        
     }
 }

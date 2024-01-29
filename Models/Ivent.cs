@@ -11,7 +11,7 @@ namespace practice.Models
     {
         public int Id { get; set; }
 
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public DateTime DateBegin { get; set; }
 

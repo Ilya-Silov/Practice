@@ -17,31 +17,68 @@ using practice.Forms;
 using Wpf.Ui.Controls;
 using practice.Database;
 using practice.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace practice
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : UiWindow
     {
         PracticeContext db;
+        List<string> strings = new List<string>() { "A-Я", "Я-А" };
+        List<string> strings2 = new List<string>() { "По возрастанию", "По убыванию" };
+        List<Ivent> ivents = new List<Ivent>();
+
         public MainWindow()
         {
             db = new PracticeContext();
+
             InitializeComponent();
-            //List <Activity> actions = new List <Activity> ();
-            //actions = db.Activity.ToList();
-            //Actions.ItemsSource = actions;
+
+            ivents = db.Ivents.ToList();
+            Ivents.ItemsSource = ivents;
+
+
+            SortNameIvents.ItemsSource = strings;
+            SortDateIvents.ItemsSource = strings2;
+
+
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Autorization autorization = new Autorization();
-            autorization.ShowDialog();
-            this.Close();
+            autorization.Show();
+
         }
-    
+
+        private void SortNameIvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortNameIvents.SelectedItem == strings[0] )
+            {
+                ivents = db.Ivents.OrderBy(p=>p.Name).ToList();
+                Ivents.ItemsSource = ivents;
+            }
+            if (SortNameIvents.SelectedItem == strings[1])
+            {
+                ivents = db.Ivents.OrderByDescending(p => p.Name).ToList();
+                Ivents.ItemsSource = ivents;
+            }
+        }
+
+        private void SortDateIvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortDateIvents.SelectedItem == strings2[0])
+            {
+                ivents = db.Ivents.OrderBy(p => p.DateBegin).ToList();
+                Ivents.ItemsSource = ivents;
+            }
+            if (SortDateIvents.SelectedItem == strings2[1])
+            {
+                ivents = db.Ivents.OrderByDescending(p => p.DateBegin).ToList();
+                Ivents.ItemsSource = ivents;
+            }
+        }
     }
 }
