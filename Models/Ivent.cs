@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -27,5 +29,10 @@ namespace practice.Models
         public User? Winner { get; set; }
 
         public ObservableCollection<Activity> Activities { get; set; }
+
+        public override string ToString()
+        {
+            return Name ;
+        }
     }
 }

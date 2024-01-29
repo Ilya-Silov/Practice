@@ -47,8 +47,8 @@
                     <TextBlock  Grid.Row="5" Grid.Column="0" Text="Роль:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
                     <TextBlock  Grid.Row="6" Grid.Column="0" Text="Email:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
                     <TextBlock  Grid.Row="7" Grid.Column="0" Text="Телефон:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-                    <TextBlock  Grid.Row="8" Grid.Column="0" Text="Мероприятие:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
-                    <TextBlock  Grid.Row="9" Grid.Column="0" Text="Активность:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                    <TextBlock x:Name="IventTxt" Grid.Row="8" Grid.Column="0" Text="Мероприятие:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                    <TextBlock  x:Name="ActivityTxt" Grid.Row="9" Grid.Column="0" Text="Активность:" FontSize="15" HorizontalAlignment="Right" Margin="0 0 5 0"/>
 
                     <TextBox x:Name="SurnameTxt" Grid.Row="1" Grid.Column="1" MaxHeight="35" Margin="5 0 5 20" PreviewTextInput="TextBox_PreviewTextInput" VerticalAlignment="Top"/>
                     <TextBox x:Name="NameTxt" Grid.Row="2" Grid.Column="1" MaxHeight="35" Margin="5 0 5 20" PreviewTextInput="TextBox_PreviewTextInput" VerticalAlignment="Top" />
@@ -60,8 +60,8 @@
                     <ComboBox x:Name="RoleCB"  Grid.Row="5" Grid.Column="1" Margin="5 0 5 20" SelectionChanged="RoleCB_SelectionChanged" VerticalAlignment="Top"/>
                     <TextBox  x:Name="EmailTxt" Grid.Row="6" Grid.Column="1" MinHeight="40" Margin="5 0 5 20" MaxHeight="25" VerticalAlignment="Top"/>
                     <xctk:MaskedTextBox x:Name="PhoneTxt"  Grid.Row="7" Grid.Column="1" Margin="5 0 5 20" Mask="+7(000)-000-00-00" Background="#212121" VerticalContentAlignment="Center"  Foreground="White"/>
-                    <ComboBox x:Name="IventCB" Grid.Row="8" Grid.Column="1" Margin="5 0 5 20" VerticalAlignment="Top" ItemsSource="{Binding ivents}"/>
-                    <ComboBox  Grid.Row="9" Grid.Column="1" Margin="5 0 5 20" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="IventCB" Grid.Row="8" Grid.Column="1" Margin="5 0 5 20" VerticalAlignment="Top" SelectionChanged="IventCB_SelectionChanged"/>
+                    <ComboBox x:Name="ActivityCB" Grid.Row="9" Grid.Column="1" Margin="5 0 5 20" VerticalAlignment="Top"  />
 
                 </Grid>
             </ScrollViewer>
@@ -79,7 +79,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="1" Text="Пароль:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" />
                 <TextBlock Grid.Row="2" Text="Повтор пароля:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" />
-                <CheckBox x:Name="pass_check" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0" Checked="pass_check_Checked" Click="pass_check_Click"/>
+                <CheckBox x:Name="pass_check" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0"  Click="pass_check_Click"/>
                 <Border Grid.Row="0" Grid.Column="1" Margin="0 4 10 20" BorderBrush="DarkGray" BorderThickness="1">
                     <Image />
                 </Border>

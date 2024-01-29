@@ -24,5 +24,9 @@ namespace practice.Models
         public int IventId { get; set; }
         public Ivent Ivent { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
