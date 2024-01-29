@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:practice.Forms"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="EventEditWindow" Height="450" Width="800">
     <Grid Margin="20px">
@@ -23,16 +24,21 @@
             
             <TextBlock Text="Город" Margin=" 0 10px 0 0"></TextBlock>
             <ComboBox x:Name="CityPicker"
-                      IsEditable="True">                
+                      IsEditable="True"
+                      >                
             </ComboBox>
             
             <TextBlock Text="Дата начала" Margin=" 0 10px 0 0"></TextBlock>
-            <DatePicker x:Name="StartDatePickerStandard" DisplayDateStart="{x:Static sys:DateTime.Today}"></DatePicker>
-            
-            <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
-                <ui:TextBox PlaceholderText="Часы"></ui:TextBox>
+                <DatePicker x:Name="StartDatePickerStandard" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding Event.DateOnly}" Cursor="IBeam"></DatePicker>
+
+                <!--<Border CornerRadius="6" ClipToBounds="False" BorderBrush="{StaticResource CircleElevationBorderBrush}" BorderThickness="2">
+                    <ext:DateTimePicker Minimum="{x:Static sys:DateTime.Now}" Value="{Binding Event.DateBegin}" Background="{StaticResource SolidBackgroundFillColorTertiaryBrush}" Foreground="{StaticResource TextFillColorSecondaryBrush}" TextAlignment="Left" Height="35px" BorderThickness="0" ></ext:DateTimePicker>
+                </Border>-->
+
+                <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
+                    <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Event.Hour}"></ui:TextBox>
                 <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
-                <ui:TextBox PlaceholderText="Минуты"></ui:TextBox>
+                    <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Event.Minute}"></ui:TextBox>
             </StackPanel>
             
             <TextBlock Text="Активности" Margin=" 0 10px 0 0"></TextBlock>
@@ -76,9 +82,12 @@
                                         <TextBlock Text="Номер дня" Margin=" 0 5px"></TextBlock>
                                     <ui:TextBox PlaceholderText="Введите номер дня" Text="{Binding DayNumber}"></ui:TextBox>
                                         <TextBlock Text="Время начала" Margin=" 0 5px"></TextBlock>
-                                        <ui:TextBox PlaceholderText="Введите название"></ui:TextBox>
-
-                                        <TextBlock Text="Выберите модератора" Margin=" 0 5px"></TextBlock>
+                                    <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
+                                        <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Hour}"></ui:TextBox>
+                                        <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
+                                        <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Minute}"></ui:TextBox>
+                                    </StackPanel>
+                                    <TextBlock Text="Выберите модератора" Margin=" 0 5px"></TextBlock>
                                     <ComboBox x:Name="ModeratorPicker" IsEditable="True" SelectedItem="{Binding Moderator}" ItemsSource="{Binding Path=Users, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:UiWindow}}}"></ComboBox>
                                 </StackPanel>
                                 </ui:CardExpander>

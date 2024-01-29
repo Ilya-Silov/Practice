@@ -37,9 +37,12 @@ namespace practice.Forms
         {
             this.DataContext = this;
 
-            Event = PracticeContext.Instance.Ivents.Include(i=> i.Activities).Include(i => i.City).Where(i=>i.Id==3).FirstOrDefault();
+            Event = PracticeContext.Instance.Ivents.Include(i => i.Activities).ThenInclude(a => a.Moderator).Include(i => i.City).Where(i => i.Id == 3).FirstOrDefault();
 
-            
+            //TODO: При изменении не подтягивается порядок
+            Event.Activities = new ObservableCollection<Activity>(Event.Activities.OrderBy(a => a.DayNumber).ThenBy(a => a.TimeBegin));
+
+
 
             new Task(() =>
             {
@@ -59,9 +62,6 @@ namespace practice.Forms
             }).Start();
 
             InitializeComponent();
-
-            StartDatePickerStandard.SelectedDate = DateTime.Now + TimeSpan.FromDays(1);
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -88,6 +88,43 @@ namespace practice.Forms
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             PracticeContext.Instance.SaveChanges(); 
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(((Wpf.Ui.Controls.TextBox)sender).Text, out int inputValue))
+            {
+                if (inputValue < 0)
+                {
+                    ((Wpf.Ui.Controls.TextBox)sender).Text = "0";
+                }
+                if (inputValue > 23) {
+                    ((Wpf.Ui.Controls.TextBox)sender).Text = "23";
+                }
+            }
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(((Wpf.Ui.Controls.TextBox)sender).Text, out int inputValue))
+            {
+                if (inputValue < 0)
+                {
+                    ((Wpf.Ui.Controls.TextBox)sender).Text = "0";
+                }
+                if (inputValue > 59)
+                {
+                    ((Wpf.Ui.Controls.TextBox)sender).Text = "59";
+                }
+            }
         }
     }
 }

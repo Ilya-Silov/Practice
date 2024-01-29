@@ -1,23 +1,26 @@
 ﻿using Azure;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 using practice.Models;
+
+using System;
+using System.Linq;
 
 namespace practice.Database
 {
     public class PracticeContext : DbContext
     {
-        private static PracticeContext _instance;
+        private static PracticeContext _instance = new PracticeContext();
         public PracticeContext()
         {
-            
+
         }
         public static PracticeContext Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new PracticeContext();
                 return _instance;
             }
         }
@@ -28,7 +31,7 @@ namespace practice.Database
         public DbSet<ActivityJury> ActivityJures { get; set; }
         public DbSet<Activity> Activites { get; set; }
         public DbSet<Ivent> Ivents { get; set; }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 
 
@@ -39,9 +42,29 @@ namespace practice.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-        .Property(p => p.Id).UseIdentityAlwaysColumn()
-        .ValueGeneratedOnAdd();
+                .Property(p => p.Id).UseIdentityAlwaysColumn()
+                .ValueGeneratedOnAdd();
+
             modelBuilder.HasDefaultSchema("silov-barinov-maltsev");
+
+            var dateTimeProperties = modelBuilder.Model.GetEntityTypes()
+                  .SelectMany(e => e.GetProperties())
+                  .Where(p => p.ClrType == typeof(DateTime));
+
+            foreach (var property in dateTimeProperties)
+            {
+                modelBuilder.Entity(property.DeclaringEntityType.ClrType)
+                    .Property(property.Name)
+                    .HasConversion(new UtcDateTimeConverter());
+            }
+
         }
+    }
+    public class UtcDateTimeConverter : ValueConverter<DateTime, DateTime>
+    {
+        public UtcDateTimeConverter() : base(
+            v => v.ToUniversalTime(),
+            v => DateTime.SpecifyKind(v, DateTimeKind.Utc))
+        { }
     }
 }
