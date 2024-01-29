@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,7 @@ namespace practice.Models
 
         public int? WinnerId{ get; set; }
         public User? Winner { get; set; }
+
+        public ObservableCollection<Activity> Activities { get; set; }
     }
 }
