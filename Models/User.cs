@@ -37,5 +37,10 @@ namespace practice.Models
         public string Password { get; set; }
 
         public string? Photo { get; set; }
+
+        public override string ToString()
+        {
+            return Surname + " " + Name + " " + Patronomic;
+        }
     }
 }

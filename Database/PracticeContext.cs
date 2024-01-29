@@ -5,6 +5,21 @@ namespace practice.Database
 {
     public class PracticeContext : DbContext
     {
+        private static PracticeContext _instance;
+        public PracticeContext()
+        {
+            
+        }
+        public static PracticeContext Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new PracticeContext();
+                return _instance;
+            }
+        }
+
         public DbSet<City> Cites { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Direction> Directions { get; set; }
