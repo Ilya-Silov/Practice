@@ -8,12 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Classes\**" />
+    <EmbeddedResource Remove="Classes\**" />
+    <None Remove="Classes\**" />
+    <Page Remove="Classes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Пицца.png" />
     <None Remove="пципиа.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
