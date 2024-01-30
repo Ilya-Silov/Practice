@@ -60,7 +60,7 @@ namespace practice.Forms
             {
                 case "Организатор":
                     {
-                        windowToOpen = new Organizator();
+                        windowToOpen = new Organizator(user);
                         break;  
                     }
                 case "Модератор":
@@ -111,11 +111,11 @@ namespace practice.Forms
 
         private User SignUp()
         {
-            if (txtID.Text.IsNullOrEmpty() || password.Text.IsNullOrEmpty())
+            if (txtID.Text.IsNullOrEmpty() || password.Password.IsNullOrEmpty())
             {
                 return null;
             }
-            User user = db.Users.Include(u=>u.Role).Where(p => p.Id == Convert.ToInt32(txtID.Text) && p.Password == password.Text).FirstOrDefault();
+            User user = db.Users.Include(u=>u.Role).Where(p => p.Id == Convert.ToInt32(txtID.Text) && p.Password == password.Password).FirstOrDefault();
             return user;
         }
         

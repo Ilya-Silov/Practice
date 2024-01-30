@@ -1,4 +1,6 @@
-﻿using System;
+﻿using practice.Models;
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,8 +24,12 @@ namespace practice.Forms
     /// </summary>
     public partial class Organizator : UiWindow
     {
-        public Organizator()
+        public User User { get; set; }
+
+        public Organizator(User user)
         {
+            this.DataContext = this;
+            User = user;
             InitializeComponent();
         }
 
@@ -56,6 +62,39 @@ namespace practice.Forms
             Autorization autorization = new Autorization();
             autorization.Show();
             this.Close();
+        }
+
+        public string MrMrs
+        {
+            get
+            {
+                if (User.Gender.Equals("женский"))
+                {
+                    return "Mrs.";
+                }
+                return "Mr.";
+            }
+        }
+
+        public string WelcomDatePart
+        {
+            get { 
+                if (DateTime.Now.TimeOfDay > new TimeSpan(18,0,0)) {
+                    return "Добрый вечер";
+                }
+                if (DateTime.Now.TimeOfDay > new TimeSpan(11, 0, 0))
+                {
+                    return "Добрый день";
+                }
+                if (DateTime.Now.TimeOfDay > new TimeSpan(5, 0, 0))
+                {
+                    return "Доброе утро";
+                }
+                else
+                {
+                    return "Доброй ночи";
+                }
+            }
         }
     }
 }
