@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace practice.Forms
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Autorization autorization = new Autorization(); 
+            Autorization autorization = new Autorization();
             autorization.Show();
             this.Close();
         }

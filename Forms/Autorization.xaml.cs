@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 using practice.Database;
 using practice.Models;
@@ -48,36 +49,74 @@ namespace practice.Forms
         {
             Captcha captcha = new Captcha();
             captcha.ShowDialog();
-            if (SignUp())
+            User user = SignUp();
+            if (user == null)
             {
-                Organizator organizator = new Organizator();
-                organizator.Show();
-                this.Close();
+                return;
             }
-            else 
+
+            Window windowToOpen;
+            switch (user.Role.Name)
             {
-                
+                case "Организатор":
+                    {
+                        windowToOpen = new Organizator();
+                        break;  
+                    }
+                case "Модератор":
+                    {
+                        windowToOpen = new Moderator();
+                        break;
+                    }
+                case "Жюри":
+                    {
+                        windowToOpen = new Jury();
+                        break;
+                    }
+                default:
+                    {
+                        windowToOpen = new MainWindow();
+                        break;
+                    }
             }
+            windowToOpen.Show();
+            
+            foreach (Window w in App.Current.Windows)
+            {
+                if (w != windowToOpen)
+                {
+                    w.Close();
+                }
+            }
+
         }
 
         private void btnAuth_Click_1(object sender, RoutedEventArgs e)
         {
+            bool mainWindowIsOpen = false;
+            foreach (var w in App.Current.Windows)
+            {
+                if (w.GetType() == typeof(MainWindow))
+                {
+                    mainWindowIsOpen = true;
+                    break;
+                }
+            }
+            if (!mainWindowIsOpen) {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+            }            
             this.Close();
         }
 
-        private bool SignUp()
+        private User SignUp()
         {
             if (txtID.Text.IsNullOrEmpty() || password.Text.IsNullOrEmpty())
             {
-                return false;
+                return null;
             }
-            User user = db.Users.Where(p => p.Id == Convert.ToInt32(txtID.Text)).FirstOrDefault();
-          
-            if (user!=null && password.Text == user.Password )
-            {
-                return true;
-            }
-            return false;
+            User user = db.Users.Include(u=>u.Role).Where(p => p.Id == Convert.ToInt32(txtID.Text) && p.Password == password.Text).FirstOrDefault();
+            return user;
         }
         
     }

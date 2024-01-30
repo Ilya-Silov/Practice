@@ -83,10 +83,10 @@
                 <Border Grid.Row="0" Grid.Column="1" Margin="0 4 10 20" BorderBrush="DarkGray" BorderThickness="1">
                     <Image />
                 </Border>
-                <TextBox x:Name="passBoxTxt2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" Text="Password" FontSize="16" Foreground="DarkGray" Visibility="Hidden"/>
-                <PasswordBox x:Name="passBox2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" Password="Password" PasswordChar="*" FontSize="16" Foreground="DarkGray"/>
-                <TextBox x:Name="passBoxTxt" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" Text="Re-enter password" FontSize="16" Foreground="DarkGray" Visibility="Hidden"/>
-                <PasswordBox x:Name="passBox" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" Password="Re-enter password" PasswordChar="*" FontSize="16" Foreground="DarkGray"/>
+                <TextBox x:Name="passBoxTxt2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" Text="Password" FontSize="16" Visibility="Hidden"/>
+                <ui:PasswordBox x:Name="passBox2" Grid.Row="1" Grid.Column="1" Margin="5 2 2 4" PlaceholderText="Введите пароль"/>
+                <TextBox x:Name="passBoxTxt" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" Text="Re-enter password" FontSize="16" Visibility="Hidden"/>
+                <ui:PasswordBox x:Name="passBox" Grid.Row="2" Grid.Column="1" Margin="5 4 2 2" PlaceholderText="Повторите пароль"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="Видимый Пароль" VerticalAlignment="Center" Margin="5 0 0 0 " FontSize="16" Foreground="DimGray"/>
             </Grid>
         </Grid>

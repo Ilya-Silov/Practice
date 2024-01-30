@@ -8,8 +8,17 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:ext="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
+             ExtendsContentIntoTitleBar ="True"
+WindowBackdropType="Mica"
         Title="EventEditWindow" Height="450" Width="800">
-    <Grid Margin="20px">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="Редактирование события" Icon="pack://application:,,,/пципиа.png">            
+        </ui:TitleBar>
+    <Grid Grid.Row="1" Margin="20px">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
@@ -20,7 +29,7 @@
             <ui:TextBox PlaceholderText="Введите название" Text="{Binding Event.Name}"></ui:TextBox>
             
             <TextBlock Text="Длителность (в днях)" Margin=" 0 10px 0 0"></TextBlock>
-                <ui:TextBox PlaceholderText="Введите кол-во дней" Text="{Binding Event.AmountDays}"></ui:TextBox>
+                <ui:TextBox PlaceholderText="Введите кол-во дней" Text="{Binding Event.AmountDays}" PreviewTextInput="TextBox_PreviewTextInput"></ui:TextBox>
             
             <TextBlock Text="Город" Margin=" 0 10px 0 0"></TextBlock>
             <ComboBox x:Name="CityPicker"
@@ -80,7 +89,7 @@
                                         <TextBlock Text="Название" Margin="0 0 0 5px"></TextBlock>
                                         <ui:TextBox PlaceholderText="Введите название" Text="{Binding Name}"></ui:TextBox>
                                         <TextBlock Text="Номер дня" Margin=" 0 5px"></TextBlock>
-                                    <ui:TextBox PlaceholderText="Введите номер дня" Text="{Binding DayNumber}"></ui:TextBox>
+                                    <ui:TextBox PlaceholderText="Введите номер дня" Text="{Binding DayNumber}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_2"></ui:TextBox>
                                         <TextBlock Text="Время начала" Margin=" 0 5px"></TextBlock>
                                     <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
                                         <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Hour}"></ui:TextBox>
@@ -101,8 +110,14 @@
         </ScrollViewer>
         <StackPanel Grid.Column="1" Margin="20px">
             <TextBlock Text="Изображение" HorizontalAlignment="Center"></TextBlock>
-            <Image x:Name="ImageBox" Stretch="Fill" Source="{Binding Event.Photo}"></Image>
+                <Border CornerRadius="6" BorderThickness="1" ClipToBounds="True">
+                    <Viewbox Stretch="UniformToFill">
+                        <Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                    </Viewbox>
+                </Border>
         </StackPanel>
         <ui:Button Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
     </Grid>
+    </Grid>
+
 </ui:UiWindow>

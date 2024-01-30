@@ -30,40 +30,33 @@
                 <Border Grid.Row="0" BorderThickness="1" Margin="30 10 30 10">
                     <TextBlock Text="ФОТО" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
                 </Border>
-                <Border Grid.Row="1" BorderThickness="1"  Margin="30 20 30 20" CornerRadius="10">
-                    <Button Content="Мой профиль" FontSize="16" FontWeight="Bold" Click="Button_Click_1"/>
-                </Border>
+                <ui:Button Grid.Row="1" Content="Мой профиль" FontSize="16" FontWeight="Bold" Click="Button_Click_1" HorizontalAlignment="Center" Margin="10px"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="100px"/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Доброе утро/день/вечер!" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Bottom"/>
-                <TextBlock Grid.Row="1" Text="Ms/Mrs Имя" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <StackPanel Grid.Row="0"> 
+                <TextBlock Text="Доброе утро/день/вечер!" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                <TextBlock Text="Ms/Mrs" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    
+                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch"  Content="Мероприятия" FontSize="16" FontWeight="Bold"  Click="Button_Click_3"/>
+                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch" Content="Участники" FontSize="16" FontWeight="Bold"  Click="Button_Click_2"/>
+                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch" Content="Жюри" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
+                </StackPanel>
                 <Border Grid.Row="2" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
-                    <Button  Content="Мероприятия" FontSize="16" FontWeight="Bold"  Click="Button_Click_3"/>
                 </Border>
                 <Border Grid.Row="3" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
-                    <Button  Content="Участники" FontSize="16" FontWeight="Bold"  Click="Button_Click_2"/>
                 </Border>
                 <Border Grid.Row="4" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
-                    <Button  Content="Жюри" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
                 </Border>
                 
             </Grid>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-
-                    <RowDefinition Height="10*"/>
-                </Grid.RowDefinitions>
-                <Border Grid.Column="2" BorderThickness="1" Margin="25 2.5 25 2.5" CornerRadius="14" Height="40">
-                    <Button  Content="Выйти" FontSize="16" FontWeight="Bold"  Click="Button_Click_4" Height="Auto" Width="Auto"/>
-                </Border>
+            <Grid Grid.Column="2">                
+                    <ui:Button Grid.Column="2" Content="Выйти" FontSize="16" FontWeight="Bold"  Click="Button_Click_4" Height="Auto" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

@@ -5,37 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui ="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:practice.Forms"
-        Background="#212121"
         mc:Ignorable="d"
+        ExtendsContentIntoTitleBar ="True"
+        WindowBackdropType="Mica"
         Title="Autorization" MinHeight="700" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="50px"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="Авторизация" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ui:TitleBar Grid.ColumnSpan="3" Title="Авторизация" Icon="pack://application:,,,/пципиа.png"/>
+
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Авторизация" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="ID пользователя" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0"/>
-        <TextBox x:Name="txtID" Grid.Column="1" Grid.Row="3" Margin="5 10 5 10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewTextInput="password_PreviewTextInput"/>
+        <ui:TextBox x:Name="txtID" Grid.Column="1" Grid.Row="3" Margin="5 10 5 10" PlaceholderText="Введите UID" PreviewTextInput="password_PreviewTextInput"/>
         <TextBlock Grid.Column="1" Grid.Row="4" Text="Пароль" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0"/>
-        <TextBox x:Name="password"  Grid.Column="1" Grid.Row="5" Margin="5 10 5 10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ui:PasswordBox x:Name="password"  Grid.Column="1" Grid.Row="5" Margin="5 10 5 10" PlaceholderText="Введите пароль"/>
         <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Center"  >
             <Button x:Name="btnAuth"  Content="Войти" FontSize="20" Click="btnAuth_Click" />
             <Button x:Name="btnAuth_1"  Content="Назад" Margin="20 0 0 0" FontSize="20" Click="btnAuth_Click_1" />
         </StackPanel>
         
     </Grid>
-    
+    </Grid>
 </ui:UiWindow>

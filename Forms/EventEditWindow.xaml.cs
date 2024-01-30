@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 using practice.Database;
 using practice.Models;
@@ -6,7 +7,9 @@ using practice.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,7 +28,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для EventEditWindow.xaml
     /// </summary>
-    public partial class EventEditWindow : UiWindow
+    public partial class EventEditWindow : UiWindow, INotifyPropertyChanged
     {
         public Ivent Event { get; set; }
 
@@ -33,15 +36,20 @@ namespace practice.Forms
 
         public ObservableCollection<User> Users { get; set; }
 
-        public EventEditWindow()
+        public EventEditWindow(Ivent ivent)
         {
             this.DataContext = this;
 
-            Event = PracticeContext.Instance.Ivents.Include(i => i.Activities).ThenInclude(a => a.Moderator).Include(i => i.City).Where(i => i.Id == 3).FirstOrDefault();
+            Event = ivent;
+            Event.PropertyChanged += this.PropertyChanged;
+            //Event = PracticeContext.Instance.Ivents.Include(i => i.Activities).ThenInclude(a => a.Moderator).Include(i => i.City).Where(i => i.Id == 3).FirstOrDefault();
 
             //TODO: При изменении не подтягивается порядок
-            Event.Activities = new ObservableCollection<Activity>(Event.Activities.OrderBy(a => a.DayNumber).ThenBy(a => a.TimeBegin));
 
+            if (!Event.Activities.IsNullOrEmpty())
+            {
+                Event.Activities = new ObservableCollection<Activity>(Event.Activities.OrderBy(a => a.DayNumber).ThenBy(a => a.TimeBegin));
+            }
 
 
             new Task(() =>
@@ -62,6 +70,12 @@ namespace practice.Forms
             }).Start();
 
             InitializeComponent();
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -125,6 +139,18 @@ namespace practice.Forms
                     ((Wpf.Ui.Controls.TextBox)sender).Text = "59";
                 }
             }
+        }
+
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(((Wpf.Ui.Controls.TextBox)sender).Text, out int inputValue))
+            {
+                if (inputValue > Event.AmountDays)
+                {
+                    ((Wpf.Ui.Controls.TextBox)sender).Text = Event.AmountDays.ToString();
+                }
+            }            
         }
     }
 }

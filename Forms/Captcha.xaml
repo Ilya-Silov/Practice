@@ -29,8 +29,6 @@
         <easy:Captcha Grid.Row="1" Grid.Column="1"  x:Name="MyCaptcha" Margin="20 0 20 0" Background="Black" Foreground="Black"/>
         <!--<ui:ReCaptcha Grid.Row="1" Grid.Column="1" x:Name="sus" Title="123"></ui:ReCaptcha>-->
         <TextBox x:Name="txtCapt" Grid.Row="3" Grid.Column="1"  Margin="20 0 20 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" />
-        <Border x:Name="brdCapt"  Grid.Column="1" Grid.Row="5"  Margin="50 5 50 5" >
-            <Button x:Name="btnCapt"  Grid.Row="5" Grid.Column="1" Content="Проверить"  Click="btnCapt_Click" />
-        </Border>
+            <Button x:Name="btnCapt" HorizontalAlignment="Stretch" Grid.Row="5" Grid.Column="1" Content="Проверить"  Click="btnCapt_Click" />
     </Grid>
 </ui:UiWindow>
