@@ -13,31 +13,55 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Окно Жюри" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" VerticalAlignment="Top"/>
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl  ItemsSource="{Binding Activities}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <ui:CardControl Margin="0 10 0 0" HorizontalContentAlignment="Left" >
-                            <StackPanel  HorizontalAlignment="Stretch">
-                                <TextBlock Text="{Binding  Name,StringFormat={}Название: {0}}" Margin="5"></TextBlock>
-                                <TextBlock Text="{Binding DayNumber,StringFormat={}День: {0} }" Margin="5"></TextBlock>
-                                <TextBlock Text="{Binding TimeBegin,StringFormat={}Время: {0} }" Margin="5"></TextBlock>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0} {1} {2}">
-                                            <Binding Path="Moderator.Name"/>
-                                            <Binding Path="Moderator.Surname"/>
-                                            <Binding Path="Moderator.Patronomic"/>
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <TextBlock Text="{Binding Ivent.Name}" Margin="5"/>
-                            </StackPanel>
-                        </ui:CardControl>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1" Margin="30 10 30 10">
+                    <Viewbox Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding User.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                    </Viewbox>
+                    <!--<TextBlock Text="ФОТО" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>-->
+                </Border>
+                <ui:Button Grid.Row="1" Content="Мой профиль" FontSize="16" FontWeight="Bold" Click="Button_Click_1" HorizontalAlignment="Center" Margin="10px"/>
+            </Grid>
+            <ScrollViewer Grid.Column="1">
+                <ItemsControl  ItemsSource="{Binding Activities}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ui:CardControl Margin="0 10 0 0" HorizontalContentAlignment="Left" >
+                                <StackPanel  HorizontalAlignment="Stretch">
+                                    <TextBlock Text="{Binding  Name,StringFormat={}Название: {0}}" Margin="5"></TextBlock>
+                                    <TextBlock Text="{Binding DayNumber,StringFormat={}День: {0} }" Margin="5"></TextBlock>
+                                    <TextBlock Text="{Binding TimeBegin,StringFormat={}Время: {0} }" Margin="5"></TextBlock>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                <Binding Path="Moderator.Name"/>
+                                                <Binding Path="Moderator.Surname"/>
+                                                <Binding Path="Moderator.Patronomic"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Ivent.Name}" Margin="5"/>
+                                </StackPanel>
+                            </ui:CardControl>
 
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Grid Grid.Column="2">
+                <ui:Button Grid.Column="2" Content="Выйти" FontSize="16" FontWeight="Bold"  Click="Button_Click_4" Height="Auto" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+        
     </Grid>
 </ui:UiWindow>

@@ -18,7 +18,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Mvvm.Services;
 
 namespace practice.Forms
 {
@@ -31,7 +33,11 @@ namespace practice.Forms
         public Autorization()
         {
             db = new PracticeContext();
+
+
             InitializeComponent();
+            MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 4);
+
         }
 
 
@@ -47,11 +53,33 @@ namespace practice.Forms
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            Captcha captcha = new Captcha();
-            captcha.ShowDialog();
+            //Captcha captcha = new Captcha();
+            //captcha.ShowDialog();
+            var answer = MyCaptcha.CaptchaText;
+            if (!(txtCapt.Text == answer))
+            {
+                SnackbarService snackbarService = new SnackbarService();
+                snackbarService.SetSnackbarControl(snack);
+                snackbarService.Show(
+                    "Капча",
+                    "Вы не правильно ввели капчу",
+                    SymbolRegular.SlideText16,
+                    ControlAppearance.Danger
+                    );
+                return;
+            }
+
             User user = SignUp();
             if (user == null)
             {
+                SnackbarService snackbarService = new SnackbarService();
+                snackbarService.SetSnackbarControl(snack);
+                snackbarService.Show(
+                    "Ошибка авторизации",
+                    "Неверное имя пользователя или пароль",
+                    SymbolRegular.SlideText16,
+                    ControlAppearance.Danger
+                    );
                 return;
             }
 
