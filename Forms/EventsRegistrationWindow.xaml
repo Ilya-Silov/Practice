@@ -42,7 +42,8 @@
                                         <ItemsControl ItemsSource="{Binding Activities}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                <Grid>
+                                                    <ui:Card Margin="0 0 0 10"> 
+                                                <Grid >
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition/>
                                                         <ColumnDefinition Width="45px"/>
@@ -53,6 +54,7 @@
                                                     </StackPanel>
                                                     <ui:Button Grid.Column="1" Icon="PeopleToolbox16" Click="Button_Click"/>
                                                 </Grid>
+                                                    </ui:Card>
                                             </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>

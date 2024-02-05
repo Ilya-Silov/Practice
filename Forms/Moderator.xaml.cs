@@ -45,11 +45,7 @@ namespace practice.Forms
             profile.ShowDialog();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Participant participant = new Participant();
-            participant.ShowDialog();
-        }
+
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {

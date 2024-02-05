@@ -50,7 +50,7 @@
                 <StackPanel Grid.Row="1">
                     
                     <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch"  Content="Мероприятия" FontSize="16" FontWeight="Bold"  Click="Button_Click_3"/>
-                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch" Content="Участники" FontSize="16" FontWeight="Bold"  Click="Button_Click_2"/>
+                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch" Content="Участники" FontSize="16" FontWeight="Bold" />
                     <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch" Content="Жюри" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
                 </StackPanel>
                 <Border Grid.Row="2" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">

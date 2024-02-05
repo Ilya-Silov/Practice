@@ -23,7 +23,7 @@
                                 <TextBlock Text="{Binding DayNumber,StringFormat={}День: {0} }" Margin="5"></TextBlock>
                                 <TextBlock Text="{Binding TimeBegin,StringFormat={}Время: {0} }" Margin="5"></TextBlock>
                                 <TextBlock>
-                                    <TextBlock.Text Margin="5">
+                                    <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0} {1} {2}">
                                             <Binding Path="Moderator.Name"/>
                                             <Binding Path="Moderator.Surname"/>
