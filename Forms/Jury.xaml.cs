@@ -46,7 +46,7 @@ namespace practice.Forms
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Profile profile = new Profile();
+            Profile profile = new Profile(User);
             profile.ShowDialog();
         }
 

@@ -56,7 +56,7 @@ namespace practice.Forms
             //Captcha captcha = new Captcha();
             //captcha.ShowDialog();
             var answer = MyCaptcha.CaptchaText;
-            if (!(txtCapt.Text == answer))
+            if (!(txtCapt.Text == answer) && !skipcapt.IsChecked.Value)
             {
                 SnackbarService snackbarService = new SnackbarService();
                 snackbarService.SetSnackbarControl(snack);

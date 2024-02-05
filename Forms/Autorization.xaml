@@ -53,7 +53,7 @@
             <TextBlock Grid.Column="1" Grid.Row="6" Text="Капча" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 20 0"/>
             <capt:Captcha Grid.Row="7" Grid.Column="1" x:Name="MyCaptcha" Background="Black" Foreground="Black" Margin="0 0 0 20"/>
             <ui:TextBox x:Name="txtCapt" Grid.Column="1" Grid.Row="8" PlaceholderText="Введите капчу"/>
-
+            <CheckBox Content="skip capt" Name="skipcapt"/>
 
             <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20">
                 <Button x:Name="btnAuth"  Content="Войти" FontSize="20" Click="btnAuth_Click" />
