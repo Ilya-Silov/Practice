@@ -65,12 +65,17 @@ namespace practice.Forms
                     }
                 case "Модератор":
                     {
-                        windowToOpen = new Moderator();
+                        windowToOpen = new Moderator(user);
                         break;
                     }
                 case "Жюри":
                     {
                         windowToOpen = new Jury();
+                        break;
+                    }
+                case "Участник":
+                    {
+                        windowToOpen = new Participant(user);
                         break;
                     }
                 default:

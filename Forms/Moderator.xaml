@@ -1,12 +1,67 @@
-﻿<Window x:Class="practice.Forms.Moderator"
+﻿<ui:UiWindow x:Class="practice.Forms.Moderator"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:practice.Forms"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         Title="Moderator" Height="450" Width="800" Icon="/пципиа.png" >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderThickness="0 0 0 1" >
+            <TextBlock Text="Окно Модератора" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" VerticalAlignment="Top"/>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1" Margin="30 10 30 10">
+                    <Viewbox Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding User.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
+                    </Viewbox>
+                    <!--<TextBlock Text="ФОТО" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>-->
+                </Border>
+                <ui:Button Grid.Row="1" Content="Мой профиль" FontSize="16" FontWeight="Bold" Click="Button_Click_1" HorizontalAlignment="Center" Margin="10px"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100px"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="{Binding WelcomDatePart}" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Bottom"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding MrMrs}" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 0 10px 0"/>
+                        <TextBlock Text="{Binding User.Name}" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+
+                    <ui:Button Margin="0 0 0 10px" HorizontalAlignment="Stretch"  Content="Мероприятия для регитрации" FontSize="16" FontWeight="Bold"  Click="Button_Click_3"/>
+                    
+                </StackPanel>
+                <Border Grid.Row="2" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
+                </Border>
+                <Border Grid.Row="3" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
+                </Border>
+                <Border Grid.Row="4" BorderThickness="1"  Margin="45 2.5 45 2.5" CornerRadius="14">
+                </Border>
+
+            </Grid>
+            <Grid Grid.Column="2">
+                <ui:Button Grid.Column="2" Content="Выйти" FontSize="16" FontWeight="Bold"  Click="Button_Click_4" Height="Auto" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
     </Grid>
-</Window>
+</ui:UiWindow>
