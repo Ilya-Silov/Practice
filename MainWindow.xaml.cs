@@ -46,7 +46,7 @@ namespace practice
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Autorization autorization = new Autorization();
-            autorization.Show();
+            autorization.ShowDialog();
 
         }
 

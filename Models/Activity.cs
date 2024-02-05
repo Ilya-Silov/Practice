@@ -55,7 +55,7 @@ namespace practice.Models
 
         public int IventId { get; set; }
         public Ivent Ivent { get; set; }
-
+             
 
         public event PropertyChangedEventHandler PropertyChanged;
 
