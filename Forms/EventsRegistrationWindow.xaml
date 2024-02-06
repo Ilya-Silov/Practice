@@ -64,7 +64,7 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" Margin="0 0 10 0">
                 <TextBlock Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
                 <TextBlock HorizontalAlignment="left" VerticalAlignment="Center" Text="Мероприятие"/>
                 <ComboBox x:Name="SortNameIvents" SelectionChanged="SortNameIvents_SelectionChanged" MaxHeight="50" />

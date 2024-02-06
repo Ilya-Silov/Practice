@@ -54,7 +54,7 @@ WindowBackdropType="Mica"
             </StackPanel>
             
             <TextBlock Text="Активности" Margin=" 0 10px 0 0"></TextBlock>
-                <ui:Button Icon="Add12" HorizontalAlignment="Stretch" Height="30px" Click="Button_Click"></ui:Button>
+                    <ui:Button Icon="{ui:SymbolIcon Add12}" HorizontalAlignment="Stretch" Height="30px" Click="Button_Click"></ui:Button>
 
                 <ItemsControl ItemsSource="{Binding Event.Activities}">
                     <ItemsControl.ItemsPanel>
@@ -81,7 +81,7 @@ WindowBackdropType="Mica"
                                 Grid.RowSpan="2"
                                 Grid.Column="1"
                                 Margin="0,0,16,0"
-                                            Icon="Delete20"
+                                            Icon="{ui:SymbolIcon Delete20}"
                                             MouseEnter="Button_MouseEnter"
                                             MouseLeave="Button_MouseLeave"
                                             Click="Button_Click_1"
@@ -111,15 +111,13 @@ WindowBackdropType="Mica"
             
         </StackPanel>
         </ScrollViewer>
-        <StackPanel Grid.Column="1" Margin="20px">
+        <StackPanel Grid.Column="1" Margin="20">
             <TextBlock Text="Изображение" HorizontalAlignment="Center"></TextBlock>
                 <Border CornerRadius="6" BorderThickness="1" ClipToBounds="True">
-                    <Viewbox Stretch="UniformToFill">
-                        <Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
-                    </Viewbox>
+                     <ui:Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ui:Image>
                 </Border>
         </StackPanel>
-        <ui:Button Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
+            <ui:Button Margin="20" Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
     </Grid>
     </Grid>
 

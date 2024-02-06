@@ -31,9 +31,7 @@
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" BorderThickness="1" Margin="30 10 30 10">
-                    <Viewbox Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding User.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></Image>
-                    </Viewbox>
+                 <ui:Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding User.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ui:Image>
                     <!--<TextBlock Text="ФОТО" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>-->
                 </Border>
                 <ui:Button Grid.Row="1" Content="Мой профиль" FontSize="16" FontWeight="Bold" Click="Button_Click_1" HorizontalAlignment="Center" Margin="10px"/>
@@ -44,10 +42,10 @@
                         <DataTemplate>
                             <ui:CardControl Margin="0 10 0 0" HorizontalContentAlignment="Left" >
                                 <StackPanel  HorizontalAlignment="Stretch">
-                                    <TextBlock Text="{Binding  Name,StringFormat={}Название: {0}}" Margin="5"></TextBlock>
-                                    <TextBlock Text="{Binding DayNumber,StringFormat={}День: {0} }" Margin="5"></TextBlock>
-                                    <TextBlock Text="{Binding TimeBegin,StringFormat={}Время: {0} }" Margin="5"></TextBlock>
-                                    <TextBlock>
+                                    <TextBlock Text="{Binding  Name,StringFormat={}Название: {0}}" Margin="0 0 0 5"></TextBlock>
+                                    <TextBlock Text="{Binding DayNumber,StringFormat={}День: {0} }" Margin="0 0 0 5"></TextBlock>
+                                    <TextBlock Text="{Binding TimeBegin,StringFormat={}Время: {0} }" Margin="0 0 0 5"></TextBlock>
+                                    <ui:TextBlock Margin="0 0 0 5">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0} {1} {2}">
                                                 <Binding Path="Moderator.Name"/>
@@ -55,8 +53,8 @@
                                                 <Binding Path="Moderator.Patronomic"/>
                                             </MultiBinding>
                                         </TextBlock.Text>
-                                    </TextBlock>
-                                    <TextBlock Text="{Binding Ivent.Name}" Margin="5"/>
+                                    </ui:TextBlock>
+                                    <TextBlock Text="{Binding Ivent.Name}" Margin="0 0 0 5"/>
                                     <ui:RatingControl Loaded="RatingControl_Loaded" ValueChanged="RatingControl_ValueChanged">
                                         
                                     </ui:RatingControl>

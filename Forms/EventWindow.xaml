@@ -37,7 +37,8 @@
                                         <TextBlock Text="{Binding Name}" FontSize="16" TextWrapping="WrapWithOverflow"/>
                                         <TextBlock Margin="0 10px 0 0" Foreground="{StaticResource TextFillColorSecondaryBrush}" FontWeight="DemiBold" Text="{Binding DateBegin, ConverterCulture='ru-RU', StringFormat= {}{0:D}}" />
                                     </StackPanel>
-                                        <ui:Button Grid.Column="1" Icon="Edit16" Click="Button_Click"/>
+                                        <ui:Button Grid.Column="1" Click="Button_Click" Icon="{ui:SymbolIcon Edit16}">
+                                        </ui:Button>
                                     </Grid>
                                 </ui:Card>
                                 
