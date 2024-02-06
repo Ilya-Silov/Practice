@@ -127,7 +127,7 @@ namespace practice.Forms
             ActivityJury? aj = activity.ActivityJurys.Where(aj => aj.JuryID == User.Id).FirstOrDefault();
             if (aj != null && ratingControl.Value != null)
             {
-                ratingControl.Value = aj.Rate;
+                ratingControl.Value = aj.Rate.Value;
             }
         }
     }

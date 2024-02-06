@@ -22,103 +22,128 @@ WindowBackdropType="Mica"
             </ui:TitleBar.Icon>
         </ui:TitleBar>
         <Grid Grid.Row="1" Margin="20px">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer>
-        <StackPanel>
-            <TextBlock Text="Название"></TextBlock>
-            <ui:TextBox PlaceholderText="Введите название" Text="{Binding Event.Name}"></ui:TextBox>
-            
-            <TextBlock Text="Длителность (в днях)" Margin=" 0 10px 0 0"></TextBlock>
-                <ui:TextBox PlaceholderText="Введите кол-во дней" Text="{Binding Event.AmountDays}" PreviewTextInput="TextBox_PreviewTextInput"></ui:TextBox>
-            
-            <TextBlock Text="Город" Margin=" 0 10px 0 0"></TextBlock>
-            <ComboBox x:Name="CityPicker"
-                      IsEditable="True"
-                      >                
-            </ComboBox>
-            
-            <TextBlock Text="Дата начала" Margin=" 0 10px 0 0"></TextBlock>
-                <DatePicker x:Name="StartDatePickerStandard" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding Event.DateOnly}" Cursor="IBeam"></DatePicker>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer>
+                <StackPanel>
+                    <TextBlock Text="Название"></TextBlock>
+                    <ui:TextBox PlaceholderText="Введите название" Text="{Binding Event.Name}"></ui:TextBox>
 
-                <!--<Border CornerRadius="6" ClipToBounds="False" BorderBrush="{StaticResource CircleElevationBorderBrush}" BorderThickness="2">
+                    <TextBlock Text="Длителность (в днях)" Margin=" 0 10px 0 0"></TextBlock>
+                    <ui:TextBox PlaceholderText="Введите кол-во дней" Text="{Binding Event.AmountDays}" PreviewTextInput="TextBox_PreviewTextInput"></ui:TextBox>
+
+                    <TextBlock Text="Город" Margin=" 0 10px 0 0"></TextBlock>
+                    <ComboBox x:Name="CityPicker"
+                      IsEditable="True"
+                      >
+                    </ComboBox>
+
+                    <TextBlock Text="Дата начала" Margin=" 0 10px 0 0"></TextBlock>
+                    <DatePicker x:Name="StartDatePickerStandard" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDate="{Binding Event.DateOnly}" Cursor="IBeam"></DatePicker>
+
+                    <!--<Border CornerRadius="6" ClipToBounds="False" BorderBrush="{StaticResource CircleElevationBorderBrush}" BorderThickness="2">
                     <ext:DateTimePicker Minimum="{x:Static sys:DateTime.Now}" Value="{Binding Event.DateBegin}" Background="{StaticResource SolidBackgroundFillColorTertiaryBrush}" Foreground="{StaticResource TextFillColorSecondaryBrush}" TextAlignment="Left" Height="35px" BorderThickness="0" ></ext:DateTimePicker>
                 </Border>-->
 
-                <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
-                    <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Event.Hour}"></ui:TextBox>
-                <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
-                    <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Event.Minute}"></ui:TextBox>
-            </StackPanel>
-            
-            <TextBlock Text="Активности" Margin=" 0 10px 0 0"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
+                        <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Event.Hour}"></ui:TextBox>
+                        <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
+                        <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Event.Minute}"></ui:TextBox>
+                    </StackPanel>
+
+                    <TextBlock Text="Активности" Margin=" 0 10px 0 0"></TextBlock>
                     <ui:Button Icon="{ui:SymbolIcon Add12}" HorizontalAlignment="Stretch" Height="30px" Click="Button_Click"></ui:Button>
 
-                <ItemsControl ItemsSource="{Binding Event.Activities}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ui:CardExpander Margin="0 10px 0 0">
-                                <ui:CardExpander.Header>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Text="{Binding Name}" />
-                                        
-                                        <ui:Button
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                Grid.Column="1"
-                                Margin="0,0,16,0"
+                    <ItemsControl ItemsSource="{Binding Event.Activities}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ui:CardExpander Margin="0 10px 0 0">
+                                    <ui:CardExpander.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="{Binding Name}"/>
+                                            <ui:Button
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Margin="0,0,16,0"
                                             Icon="{ui:SymbolIcon Delete20}"
                                             MouseEnter="Button_MouseEnter"
                                             MouseLeave="Button_MouseLeave"
-                                            Click="Button_Click_1"
-                                />
-                                    </Grid>
-                                </ui:CardExpander.Header>
-                                <StackPanel>
+                                            Click="Button_Click_1"/>
+                                        </Grid>
+                                    </ui:CardExpander.Header>
+                                    <StackPanel>
                                         <TextBlock Text="Название" Margin="0 0 0 5px"></TextBlock>
                                         <ui:TextBox PlaceholderText="Введите название" Text="{Binding Name}"></ui:TextBox>
                                         <TextBlock Text="Номер дня" Margin=" 0 5px"></TextBlock>
-                                    <ui:TextBox PlaceholderText="Введите номер дня" Text="{Binding DayNumber}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_2"></ui:TextBox>
+                                        <ui:TextBox PlaceholderText="Введите номер дня" Text="{Binding DayNumber}" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_2"></ui:TextBox>
                                         <TextBlock Text="Время начала" Margin=" 0 5px"></TextBlock>
-                                    <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
-                                        <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Hour}"></ui:TextBox>
-                                        <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
-                                        <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Minute}"></ui:TextBox>
-                                    </StackPanel>
-                                    <TextBlock Text="Выберите модератора" Margin=" 0 5px"></TextBlock>
-                                    <ComboBox x:Name="ModeratorPicker" IsEditable="True" SelectedItem="{Binding Moderator}" ItemsSource="{Binding Path=Users, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:FluentWindow}}}"></ComboBox>
-                                </StackPanel>
-                                </ui:CardExpander>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        <StackPanel Orientation="Horizontal" Margin=" 0 10px 0 0">
+                                            <ui:TextBox PlaceholderText="Часы" InputScope="TimeHour" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged" MaxLength="2" Text="{Binding Hour}"></ui:TextBox>
+                                            <TextBlock Text=":" VerticalAlignment="Center" Margin="5px 0px"></TextBlock>
+                                            <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Minute}"></ui:TextBox>
+                                        </StackPanel>
+                                        <TextBlock Text="Выберите модератора" Margin=" 0 5px"></TextBlock>
+                                        <ComboBox x:Name="ModeratorPicker" IsEditable="True" SelectedItem="{Binding Moderator}" ItemsSource="{Binding Path=Moderators, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:FluentWindow}}}"></ComboBox>
 
-            
-            
-        </StackPanel>
-        </ScrollViewer>
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Text="Изображение" HorizontalAlignment="Center"></TextBlock>
+                                        <ui:TextBlock Text="Выбор жюри" FontTypography="Subtitle" Margin="0 10"></ui:TextBlock>
+                                        
+                                        <ui:Card Margin="0 10">
+                                            <ScrollViewer MaxHeight="250" >
+                                                <ListView SelectionMode="Multiple" ItemsSource="{Binding Path=Juries, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:FluentWindow}}}" SelectionChanged="ListView_SelectionChanged" Loaded="ListView_Loaded">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Ellipse Width="40" Height="40" Margin="5">
+                                                                    <Ellipse.Fill>
+                                                                        <ImageBrush ImageSource="{Binding Photo}" Stretch="UniformToFill"/>
+                                                                    </Ellipse.Fill>
+                                                                </Ellipse>
+
+                                                                <StackPanel>
+                                                                    <ui:TextBlock Text="{Binding }" Margin="0 5 0 0" FontTypography="BodyStrong"></ui:TextBlock>
+                                                                    <ui:TextBlock Text="{Binding Email}" Margin="0"></ui:TextBlock>
+
+                                                                </StackPanel>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </ScrollViewer>
+                                        </ui:Card>
+                                        
+                                        
+                                    </StackPanel>
+                                </ui:CardExpander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1" Margin="20">
+                <TextBlock Text="Изображение" HorizontalAlignment="Center"></TextBlock>
                 <Border CornerRadius="6" BorderThickness="1" ClipToBounds="True">
-                     <ui:Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></ui:Image>
+                    <ui:Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="8" BorderThickness="1"></ui:Image>
                 </Border>
-        </StackPanel>
+            </StackPanel>
             <ui:Button Margin="20" Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
-    </Grid>
+        </Grid>
     </Grid>
 
 </ui:FluentWindow>

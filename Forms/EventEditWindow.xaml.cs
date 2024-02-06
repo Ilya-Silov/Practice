@@ -34,7 +34,8 @@ namespace practice.Forms
 
         public ObservableCollection<City> Cities { get; set; }
 
-        public ObservableCollection<User> Users { get; set; }
+        public ObservableCollection<User> Moderators { get; set; }
+        public ObservableCollection<User> Juries { get; set; }
 
         public EventEditWindow(Ivent ivent)
         {
@@ -52,24 +53,30 @@ namespace practice.Forms
             }
 
 
-            new Task(() =>
-            {
+            
                 try
                 {
                     Cities = new ObservableCollection<City>(PracticeContext.Instance.Cites);
-                    Users = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u=>u.Role.Name.Equals("Модератор")));
+                    OnPropertyChanged(nameof(Cities));
+                    Moderators = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u=>u.Role.Name.Equals("Модератор")));
+                    OnPropertyChanged(nameof(Moderators));
+                    Juries = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u => u.RoleId == 1));
+                    OnPropertyChanged(nameof(Juries));
                 }
                 catch(Exception ex){
                     Console.WriteLine(ex.Message);
                     Console.WriteLine(ex.StackTrace);
                     throw new SystemException();
                 }
-                Dispatcher.Invoke(() => CityPicker.ItemsSource =Cities);
-
-                Dispatcher.Invoke(() => CityPicker.SelectedItem = Cities.Where(c=>c.Name.Equals(Event.City.Name)).First());
-            }).Start();
+                
+            
+            OnPropertyChanged();
 
             InitializeComponent();
+
+            Dispatcher.Invoke(() => CityPicker.ItemsSource = Cities);
+
+            Dispatcher.Invoke(() => CityPicker.SelectedItem = Cities.Where(c => c.Name.Equals(Event.City.Name)).First());
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -151,6 +158,56 @@ namespace practice.Forms
                     ((Wpf.Ui.Controls.TextBox)sender).Text = Event.AmountDays.ToString();
                 }
             }            
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Type asd = ((ListView)sender).SelectedItems.GetType();
+            List<User> userstoadd = new List<User>();
+            foreach (var item in ((ListView)sender).SelectedItems)
+            {
+                userstoadd.Add((User)item);
+            };
+            Activity activity = ((ListView)sender).DataContext as Activity;
+            List<ActivityJury> currentjur = PracticeContext.Instance.ActivityJures.Include(aj=> aj.Jury).Where(aj => aj.ActivityId == activity.ID).ToList();
+            foreach (var item in currentjur)
+            {
+                if (!userstoadd.Contains(item.Jury))
+                {
+                    PracticeContext.Instance.Remove(item);
+                }
+                else
+                {
+                    userstoadd.Remove(userstoadd.FirstOrDefault(uta => uta.Id == item.JuryID));
+
+                }
+            }
+            
+            foreach (var item in userstoadd)
+            {
+                PracticeContext.Instance.Add(new ActivityJury()
+                {
+                    ActivityId = activity.ID,
+                    JuryID = item.Id
+                });
+            }
+
+            PracticeContext.Instance.SaveChanges();
+        
+        }
+
+        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<User> userstoadd = new List<User>();
+            Activity activity = ((ListView)sender).DataContext as Activity;
+            List<User> currentjur = PracticeContext.Instance.ActivityJures.Include(aj => aj.Jury).Where(aj => aj.ActivityId == activity.ID).Select(aj=>aj.Jury).ToList();
+            foreach (var item in ((ListView)sender).Items)
+            {
+                if (currentjur.Contains(item))
+                {
+                    ((ListView)sender).SelectedItems.Add(item);
+                }
+            }
         }
     }
 }

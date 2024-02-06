@@ -20,6 +20,6 @@ namespace practice.Models
         public int ActivityId { get; set; }
         public Activity Activity { get; set; }
 
-        public double Rate { get; set; }
+        public double? Rate { get; set; }
     }
 }

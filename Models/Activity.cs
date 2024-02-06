@@ -81,7 +81,7 @@ namespace practice.Models
             ActivityJury? aj = this.ActivityJurys.Where(aj => aj.JuryID == userId).FirstOrDefault();
             if (aj != null)
             {
-                return aj.Rate;
+                return aj.Rate.Value;
             }
             return 0;
         }
