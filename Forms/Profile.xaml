@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         Title="Profile" Height="450" Width="800"  Icon="/пципиа.png" >
     <Grid>
+        <ui:Snackbar Name="snack" Panel.ZIndex="99"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="52*"/>
@@ -51,7 +52,7 @@
                     </ComboBox>
                     <TextBlock x:Name="RoleCB"  Grid.Row="5" Grid.Column="1" Margin="5 0 5 20" VerticalAlignment="Top" Text="{Binding User.Role.Name}"/>
                     <TextBox  x:Name="EmailTxt" Grid.Row="6" Grid.Column="1" MinHeight="40" Margin="5 0 5 20" MaxHeight="25" VerticalAlignment="Top" Text="{Binding User.Email}"/>
-                    <xctk:MaskedTextBox x:Name="PhoneTxt"  Grid.Row="7" Grid.Column="1" Margin="5 0 5 20" Mask="+0(000)-000-00-00" Background="#212121" VerticalContentAlignment="Center"  Foreground="White" IncludePromptInValue="False" IncludeLiteralsInValue="False" Value="{Binding MyProperty, Mode=TwoWay}"/>
+                    <xctk:MaskedTextBox x:Name="PhoneTxt"  Grid.Row="7" Grid.Column="1" Margin="5 0 5 20" Mask="+0(000)-000-00-00" Background="#212121" VerticalContentAlignment="Center"  Foreground="White" IncludePromptInValue="False" IncludeLiteralsInValue="False"/>
                     <!--<ui:TextBox x:Name="PhoneTxt"  Grid.Row="7" Grid.Column="1" Margin="5 0 5 20" Background="#212121" VerticalContentAlignment="Center"  Foreground="White" Text="{Binding User.Phone, StringFormat={}{0:(###)###-####}}"/>-->
                     
                 </Grid>

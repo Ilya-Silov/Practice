@@ -18,7 +18,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui.Common;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Mvvm.Services;
 
 namespace practice.Forms
 {
@@ -34,6 +36,15 @@ namespace practice.Forms
             InitializeComponent();
             PhoneTxt.Text = "";
             PhoneTxt.Text = User.Phone;
+            if (user.Gender.Equals("женский"))
+            {
+                GenderCB.SelectedIndex = 1;
+            }
+            else
+            {
+                GenderCB.SelectedIndex = 0;
+            }
+            
         }
         public User User { get; set; }
 
@@ -56,13 +67,18 @@ namespace practice.Forms
             {
                 PracticeContext.Instance.Users.Add(User);
                 PracticeContext.Instance.SaveChanges();
+                return;
             }
             else
             {
-        //        MessageBox.Show(
-        //"Заполните все поля",
-        //"Сообщение");
-
+                SnackbarService snackbarService = new SnackbarService();
+                snackbarService.SetSnackbarControl(snack);
+                snackbarService.Show(
+                    "Ошибка",
+                    "Заполните все поля",
+                    SymbolRegular.SlideText16,
+                    ControlAppearance.Danger
+                    );
             }
 
 
