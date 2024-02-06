@@ -19,16 +19,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using Wpf.Ui.Common;
+using Wpf.Ui;
 using Wpf.Ui.Controls;
-using Wpf.Ui.Mvvm.Services;
 
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Event.xaml
     /// </summary>
-    public partial class EventRegistrationWindow : UiWindow
+    public partial class EventRegistrationWindow : FluentWindow
     {
 
         List<string> strings = new List<string>() { "A-Я", "Я-А", "По возрастанию", "По убыванию" };
@@ -38,6 +37,8 @@ namespace practice.Forms
 
         public EventRegistrationWindow(User user)
         {
+
+            this.DataContext = this;
 
             InitializeComponent();
 
@@ -89,12 +90,13 @@ namespace practice.Forms
             PracticeContext.Instance.SaveChanges();
 
             SnackbarService snackbarService = new SnackbarService();
-            snackbarService.SetSnackbarControl(snack);
+            snackbarService.SetSnackbarPresenter(snack);
             snackbarService.Show(
                 "Данные обновлены",
                 "Вы стали модератором активности",
-                SymbolRegular.Checkmark12,
-                ControlAppearance.Success
+                ControlAppearance.Success,
+                new SymbolIcon(SymbolRegular.Checkmark12),
+                TimeSpan.FromSeconds(4)
                 );
             
         }

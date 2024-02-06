@@ -21,7 +21,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Participant.xaml
     /// </summary>
-    public partial class Participant : UiWindow
+    public partial class Participant : FluentWindow
     {
         public User User { get; set; }
 

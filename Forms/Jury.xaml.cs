@@ -5,6 +5,7 @@ using practice.Database;
 using practice.Models;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Jury.xaml
     /// </summary>
-    public partial class Jury : UiWindow
+    public partial class Jury : FluentWindow
     {
         public User User { get; set; }
 
@@ -30,11 +31,18 @@ namespace practice.Forms
             this.DataContext = this;
 
             User = user;
-            Activities = new ObservableCollection<Activity>(PracticeContext.Instance.ActivityJures.Where(x => x.JuryID == user.Id)
-                .Include(aj=>aj.Activity)
-                .ThenInclude(a => a.Moderator)
-                .Include(a => a.Activity.Ivent)
-                .Select(x => x.Activity));
+            Activities = new ObservableCollection<Activity>(PracticeContext.Instance.Activites
+                .Include(a => a.ActivityJurys)
+                .Include(a=> a.Moderator)
+                .Include(a=> a.Ivent)
+                .Where(a=> a.ActivityJurys.Any(aj=>aj.JuryID==User.Id))
+                );
+            //Activities = new ObservableCollection<Activity>(PracticeContext.Instance.ActivityJures.Where(x => x.JuryID == user.Id)
+            //    .Include(aj=>aj.Activity)
+            //    .ThenInclude(a => a.Moderator)
+            //    .Include(a => a.Activity.Ivent)
+            //    .Include(a=>a.Activity.ActivityJurys)
+            //    .Select(x => x.Activity));
 
             InitializeComponent();
         }
@@ -97,6 +105,29 @@ namespace practice.Forms
                 {
                     return "Доброй ночи";
                 }
+            }
+        }
+
+        private void RatingControl_ValueChanged(object sender, RoutedEventArgs e)
+        {
+            RatingControl ratingControl = (RatingControl)sender;
+            Activity activity = (Activity)ratingControl.DataContext;
+            ActivityJury? aj = activity.ActivityJurys.Where(aj => aj.JuryID == User.Id).FirstOrDefault();
+            if (aj != null && ratingControl.Value != null)
+            {
+                aj.Rate = ratingControl.Value;
+                PracticeContext.Instance.Update(aj);
+            }
+        }
+
+        private void RatingControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            RatingControl ratingControl = (RatingControl)sender;
+            Activity activity = (Activity)ratingControl.DataContext;
+            ActivityJury? aj = activity.ActivityJurys.Where(aj => aj.JuryID == User.Id).FirstOrDefault();
+            if (aj != null && ratingControl.Value != null)
+            {
+                ratingControl.Value = aj.Rate;
             }
         }
     }

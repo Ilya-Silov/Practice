@@ -24,7 +24,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace practice
 {
 
-    public partial class MainWindow : UiWindow
+    public partial class MainWindow : FluentWindow
     {
         PracticeContext db;
         List<string> strings = new List<string>() { "A-Я", "Я-А", "По возрастанию", "По убыванию" };

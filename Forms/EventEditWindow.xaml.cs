@@ -28,7 +28,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для EventEditWindow.xaml
     /// </summary>
-    public partial class EventEditWindow : UiWindow, INotifyPropertyChanged
+    public partial class EventEditWindow : FluentWindow, INotifyPropertyChanged
     {
         public Ivent Event { get; set; }
 

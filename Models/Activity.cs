@@ -1,4 +1,6 @@
-﻿using System;
+﻿using practice.Database;
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +10,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
+using Wpf.Ui.Controls;
 
 namespace practice.Models
 {
@@ -70,6 +74,16 @@ namespace practice.Models
         public override string ToString()
         {
             return Name;
+        }
+
+        public double GetJurysRating(int userId)
+        {
+            ActivityJury? aj = this.ActivityJurys.Where(aj => aj.JuryID == userId).FirstOrDefault();
+            if (aj != null)
+            {
+                return aj.Rate;
+            }
+            return 0;
         }
     }
 }

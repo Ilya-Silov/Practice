@@ -18,21 +18,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using Wpf.Ui.Common;
+using Wpf.Ui;
 using Wpf.Ui.Controls;
-using Wpf.Ui.Mvvm.Services;
 
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Autorization.xaml
     /// </summary>
-    public partial class Autorization : UiWindow
+    public partial class Autorization : FluentWindow
     {
         PracticeContext db;
         public Autorization()
         {
             db = new PracticeContext();
+            this.DataContext = this;
 
 
             InitializeComponent();
@@ -59,12 +59,13 @@ namespace practice.Forms
             if (!(txtCapt.Text == answer) && !skipcapt.IsChecked.Value)
             {
                 SnackbarService snackbarService = new SnackbarService();
-                snackbarService.SetSnackbarControl(snack);
+                snackbarService.SetSnackbarPresenter(snack);
                 snackbarService.Show(
                     "Капча",
                     "Вы не правильно ввели капчу",
-                    SymbolRegular.SlideText16,
-                    ControlAppearance.Danger
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.SlideText16),
+                    TimeSpan.FromSeconds(4)
                     );
                 return;
             }
@@ -73,12 +74,13 @@ namespace practice.Forms
             if (user == null)
             {
                 SnackbarService snackbarService = new SnackbarService();
-                snackbarService.SetSnackbarControl(snack);
+                snackbarService.SetSnackbarPresenter(snack);
                 snackbarService.Show(
                     "Ошибка авторизации",
                     "Неверное имя пользователя или пароль",
-                    SymbolRegular.SlideText16,
-                    ControlAppearance.Danger
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.SlideText16),
+                    TimeSpan.FromSeconds(4)
                     );
                 return;
             }

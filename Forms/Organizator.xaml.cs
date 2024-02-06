@@ -22,7 +22,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Organizator.xaml
     /// </summary>
-    public partial class Organizator : UiWindow
+    public partial class Organizator : FluentWindow
     {
         public User User { get; set; }
 

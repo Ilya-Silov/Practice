@@ -21,7 +21,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Moderator.xaml
     /// </summary>
-    public partial class Moderator : UiWindow
+    public partial class Moderator : FluentWindow
     {
  
         public User User { get; set; }

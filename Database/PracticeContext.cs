@@ -41,6 +41,7 @@ namespace practice.Database
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<User>()
                 .Property(p => p.Id).UseIdentityAlwaysColumn()
                 .ValueGeneratedOnAdd();

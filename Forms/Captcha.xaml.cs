@@ -25,7 +25,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Captcha.xaml
     /// </summary>
-    public partial class Captcha : UiWindow
+    public partial class Captcha : FluentWindow
     {
         public Captcha()
         {

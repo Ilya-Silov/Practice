@@ -1,4 +1,4 @@
-﻿<ui:UiWindow x:Class="practice.Forms.Autorization"
+﻿<ui:FluentWindow x:Class="practice.Forms.Autorization"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,14 +10,19 @@
         mc:Ignorable="d"
         ExtendsContentIntoTitleBar ="True"
         WindowBackdropType="Mica"
-        Title="Autorization" MinHeight="700" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
+        Title="Авторизация" MinHeight="700" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/пципиа.png" >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ui:TitleBar Grid.ColumnSpan="3" Title="Авторизация" Icon="pack://application:,,,/пципиа.png"/>
+        
+        <ui:TitleBar Grid.Row="0" Title="{Binding Title}" Margin="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/пципиа.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
 
 
         <StackPanel Grid.Row="1" Margin="10" MaxWidth="500" VerticalAlignment="Center">
@@ -61,7 +66,7 @@
             </StackPanel>
 
         </StackPanel>
-        <ui:Snackbar Grid.ColumnSpan="100" Grid.Row="102" x:Name="snack" Panel.ZIndex="99" VerticalAlignment="Bottom"/>
+        <ui:SnackbarPresenter Grid.ColumnSpan="100" Grid.Row="102" x:Name="snack" Panel.ZIndex="99" VerticalAlignment="Bottom"/>
 
     </Grid>
-</ui:UiWindow>
+</ui:FluentWindow>

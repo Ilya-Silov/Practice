@@ -1,4 +1,4 @@
-﻿<ui:UiWindow x:Class="practice.Forms.Captcha"
+﻿<ui:FluentWindow x:Class="practice.Forms.Captcha"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
         xmlns:captcha="clr-namespace:ReCaptcha.Desktop.WPF.UI;assembly=ReCaptcha.Desktop.WPF"
         xmlns:themes="clr-namespace:ReCaptcha.Desktop.WPF.UI.Themes;assembly=ReCaptcha.Desktop.WPF"
         mc:Ignorable="d"
-        Title="Captcha" Height="400" Width="450" WindowStartupLocation="CenterScreen" Icon="/пципиа.png" >
+        Title="Captcha" Height="400" Width="450" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/пципиа.png">
    
     <Grid >
         <Grid.RowDefinitions>
@@ -31,4 +31,4 @@
         <TextBox x:Name="txtCapt" Grid.Row="3" Grid.Column="1"  Margin="20 0 20 0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" />
             <Button x:Name="btnCapt" HorizontalAlignment="Stretch" Grid.Row="5" Grid.Column="1" Content="Проверить"  Click="btnCapt_Click" />
     </Grid>
-</ui:UiWindow>
+</ui:FluentWindow>

@@ -1,4 +1,4 @@
-﻿<ui:UiWindow x:Class="practice.Forms.EventEditWindow"
+﻿<ui:FluentWindow x:Class="practice.Forms.EventEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys ="clr-namespace:System;assembly=mscorlib"
@@ -10,15 +10,18 @@
         mc:Ignorable="d"
              ExtendsContentIntoTitleBar ="True"
 WindowBackdropType="Mica"
-        Title="EventEditWindow" Height="450" Width="800">
+        Title="Редактирование мероприятия" Height="450" Width="800" Icon="pack://application:,,,/пципиа.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ui:TitleBar Title="Редактирование события" Icon="pack://application:,,,/пципиа.png">            
+        <ui:TitleBar Grid.Row="0" Title="{Binding Title}" Margin="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/пципиа.png" />
+            </ui:TitleBar.Icon>
         </ui:TitleBar>
-    <Grid Grid.Row="1" Margin="20px">
+        <Grid Grid.Row="1" Margin="20px">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
@@ -97,7 +100,7 @@ WindowBackdropType="Mica"
                                         <ui:TextBox PlaceholderText="Минуты" InputScope="TimeMinorSec" PreviewTextInput="TextBox_PreviewTextInput" TextChanged="TextBox_TextChanged_1" MaxLength="2" Text="{Binding Minute}"></ui:TextBox>
                                     </StackPanel>
                                     <TextBlock Text="Выберите модератора" Margin=" 0 5px"></TextBlock>
-                                    <ComboBox x:Name="ModeratorPicker" IsEditable="True" SelectedItem="{Binding Moderator}" ItemsSource="{Binding Path=Users, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:UiWindow}}}"></ComboBox>
+                                    <ComboBox x:Name="ModeratorPicker" IsEditable="True" SelectedItem="{Binding Moderator}" ItemsSource="{Binding Path=Users, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:FluentWindow}}}"></ComboBox>
                                 </StackPanel>
                                 </ui:CardExpander>
                         </DataTemplate>
@@ -120,4 +123,4 @@ WindowBackdropType="Mica"
     </Grid>
     </Grid>
 
-</ui:UiWindow>
+</ui:FluentWindow>

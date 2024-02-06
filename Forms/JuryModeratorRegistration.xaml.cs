@@ -27,7 +27,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для JuryModeratorRegistration.xaml
     /// </summary>
-    public partial class JuryModeratorRegistration : UiWindow
+    public partial class JuryModeratorRegistration : FluentWindow
     {
         PracticeContext db;
         List<Role> roles = new();
@@ -35,6 +35,7 @@ namespace practice.Forms
         User user = new User();
         public JuryModeratorRegistration()
         {
+            this.DataContext = this;
             db = new PracticeContext();
             roles = db.Roles.ToList();
             strRoles = new List<string>();

@@ -18,16 +18,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using Wpf.Ui.Common;
+using Wpf.Ui;
 using Wpf.Ui.Controls;
-using Wpf.Ui.Mvvm.Services;
 
 namespace practice.Forms
 {
     /// <summary>
     /// Логика взаимодействия для Profile.xaml
     /// </summary>
-    public partial class Profile : UiWindow
+    public partial class Profile : FluentWindow
     {
         public Profile(User user)
         {
@@ -65,6 +64,7 @@ namespace practice.Forms
 
             if (Check())
             {
+
                 PracticeContext.Instance.Users.Add(User);
                 PracticeContext.Instance.SaveChanges();
                 return;
@@ -72,12 +72,13 @@ namespace practice.Forms
             else
             {
                 SnackbarService snackbarService = new SnackbarService();
-                snackbarService.SetSnackbarControl(snack);
+                snackbarService.SetSnackbarPresenter(snack);
                 snackbarService.Show(
                     "Ошибка",
                     "Заполните все поля",
-                    SymbolRegular.SlideText16,
-                    ControlAppearance.Danger
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.SlideText16),
+                    TimeSpan.FromSeconds(3)
                     );
             }
 

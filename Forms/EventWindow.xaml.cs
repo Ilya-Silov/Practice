@@ -25,7 +25,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Event.xaml
     /// </summary>
-    public partial class EventWindow : UiWindow
+    public partial class EventWindow : FluentWindow
     {
 
         List<string> strings = new List<string>() { "A-Я", "Я-А", "По возрастанию", "По убыванию" };
@@ -33,6 +33,7 @@ namespace practice.Forms
 
         public EventWindow()
         {
+            this.DataContext = this;
 
             InitializeComponent();
 

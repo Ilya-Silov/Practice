@@ -1,4 +1,4 @@
-﻿<ui:UiWindow
+﻿<ui:FluentWindow
         x:Class="practice.Forms.Participant"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,16 +7,22 @@
         xmlns:local="clr-namespace:practice.Forms"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Participant" Height="450" Width="800" Icon="/пципиа.png" >
+        Title="Участник" Height="450" Width="800" Icon="pack://application:,,,/пципиа.png">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" BorderThickness="0 0 0 1" >
+        <ui:TitleBar Grid.Row="0" Title="{Binding Title}" Margin="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="pack://application:,,,/пципиа.png" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+        <Border Grid.Row="1" BorderThickness="0 0 0 1" >
             <TextBlock Text="Окно Участника" HorizontalAlignment="Center" FontSize="32" FontWeight="Bold" VerticalAlignment="Top"/>
         </Border>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60*"/>
                 <ColumnDefinition Width="100*"/>
@@ -55,4 +61,4 @@
             </Grid>
         </Grid>
     </Grid>
-</ui:UiWindow>
+</ui:FluentWindow>
