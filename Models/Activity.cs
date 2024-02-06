@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -55,7 +56,9 @@ namespace practice.Models
 
         public int IventId { get; set; }
         public Ivent Ivent { get; set; }
-             
+
+        public ObservableCollection<ActivityJury> ActivityJurys { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
