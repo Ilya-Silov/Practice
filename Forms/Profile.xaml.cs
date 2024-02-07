@@ -65,7 +65,7 @@ namespace practice.Forms
             if (Check())
             {
 
-                PracticeContext.Instance.Users.Add(User);
+                PracticeContext.Instance.Users.Update(User);
                 PracticeContext.Instance.SaveChanges();
                 return;
             }

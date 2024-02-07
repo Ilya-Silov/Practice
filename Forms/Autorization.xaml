@@ -56,7 +56,10 @@
             <ui:PasswordBox x:Name="password"  Grid.Column="1" Grid.Row="5" Margin="5 10 5 10" PlaceholderText="Введите пароль"/>
 
             <TextBlock Grid.Column="1" Grid.Row="6" Text="Капча" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 20 0"/>
-            <capt:Captcha Grid.Row="7" Grid.Column="1" x:Name="MyCaptcha" Background="Black" Foreground="Black" Margin="0 0 0 20"/>
+            <StackPanel Orientation="Horizontal" Cursor="">
+                <capt:Captcha Grid.Row="7" Grid.Column="1" x:Name="MyCaptcha" Background="Black" Foreground="Black" Margin="0 0 0 20" VerticalAlignment="Stretch"/>
+                <ui:Button Grid.Row="7" Grid.Column="2" Content="Обновить" Click="Button_Click" VerticalAlignment="Stretch"></ui:Button>
+            </StackPanel>
             <ui:TextBox x:Name="txtCapt" Grid.Column="1" Grid.Row="8" PlaceholderText="Введите капчу"/>
             <CheckBox Content="skip capt" Name="skipcapt"/>
 

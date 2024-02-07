@@ -153,6 +153,10 @@ namespace practice.Forms
             User user = db.Users.Include(u=>u.Role).Where(p => p.Id == Convert.ToInt32(txtID.Text) && p.Password == password.Password).FirstOrDefault();
             return user;
         }
-        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+           MyCaptcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 4);
+        }
     }
 }
