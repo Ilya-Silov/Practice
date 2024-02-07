@@ -76,7 +76,10 @@ namespace practice.Forms
 
             Dispatcher.Invoke(() => CityPicker.ItemsSource = Cities);
 
-            Dispatcher.Invoke(() => CityPicker.SelectedItem = Cities.Where(c => c.Name.Equals(Event.City.Name)).First());
+            if (Event.City != null)
+            {
+                Dispatcher.Invoke(() => CityPicker.SelectedItem = Cities.Where(c => c.Name.Equals(Event.City.Name)));
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -23,10 +23,10 @@ namespace practice.Models
 
         public int AmountDays { get; set; }
 
-        public string Photo { get; set; }
+        public string? Photo { get; set; }
 
-        public int CityId { get; set; }
-        public City City { get; set; }
+        public int? CityId { get; set; }
+        public City? City { get; set; }
 
         public int? WinnerId{ get; set; }
         public User? Winner { get; set; }

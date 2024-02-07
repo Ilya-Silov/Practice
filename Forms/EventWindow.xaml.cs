@@ -84,5 +84,17 @@ namespace practice.Forms
             window.Owner = this;
             window.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Ivent newevent = new Ivent() {
+                Name = "Новое мероприятие",
+                DateBegin = DateTime.Now,
+                AmountDays = 1
+            };
+            ivents.Insert(0, newevent);
+            PracticeContext.Instance.Add(newevent);
+            PracticeContext.Instance.SaveChanges();
+        }
     }
 }
