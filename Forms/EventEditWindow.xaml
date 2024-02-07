@@ -136,13 +136,11 @@ WindowBackdropType="Mica"
 
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel Grid.Column="1" Margin="20">
-                <TextBlock Text="Изображение" HorizontalAlignment="Center"></TextBlock>
-                <Border CornerRadius="6" BorderThickness="1" ClipToBounds="True">
-                    <ui:Image x:Name="ImageBox" Stretch="UniformToFill" Source="{Binding Event.Photo}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" CornerRadius="8" BorderThickness="1"></ui:Image>
-                </Border>
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
+                    <ui:Image  Margin="10 10 10 10" Name="ImagePhoto" Source="{Binding Event.Photo}" />
+                    <ui:Button  Margin="10 10 10 10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Button_Click_3" Content="Загрузить фото"/>
+                    <ui:Button Margin="20" Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
             </StackPanel>
-            <ui:Button Margin="20" Content="Сохранить" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Button_Click_2"></ui:Button>
         </Grid>
     </Grid>
 

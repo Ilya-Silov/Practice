@@ -78,11 +78,10 @@
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                
-                <Border Grid.Row="0" Grid.Column="1" Margin="0 4 10 20" BorderBrush="DarkGray" BorderThickness="1">
-                    <Image />
-                </Border>
-                
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
+                    <ui:Image  Margin="10 10 10 10" Name="ImagePhoto" Source="{Binding User.Photo}" />
+                    <ui:Button  Margin="10 10 10 10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Button_Click_2" Content="Загрузить фото"/>
+                </StackPanel>
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
@@ -92,6 +91,7 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
+            
             <Button Grid.Column="1" VerticalAlignment="Bottom"  Content="Ок" FontSize="16" FontWeight="Bold" Click="Button_Click"  Margin="0 0 5 5"/>
             <Button  Grid.Column="2" VerticalAlignment="Bottom"  Content="Отмена" FontSize="16" FontWeight="Bold" Click="Button_Click_1"  Margin="0 0 5 5"/>
         </Grid>

@@ -1,4 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
+
+using Newtonsoft.Json.Linq;
 
 using practice.Database;
 using practice.Models;
@@ -6,7 +9,9 @@ using practice.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -29,6 +34,8 @@ namespace practice.Forms
     /// </summary>
     public partial class Profile : FluentWindow
     {
+        public string FilePath { get; set; }
+        public bool IsPhotoChanged { get; set; } = false;
         public Profile(User user)
         {
             User = user;
@@ -44,7 +51,7 @@ namespace practice.Forms
             {
                 GenderCB.SelectedIndex = 0;
             }
-            
+
         }
         public User User { get; set; }
 
@@ -57,16 +64,35 @@ namespace practice.Forms
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
+
             User.Surname = SurnameTxt.Text;
             User.Name = NameTxt.Text;
             User.Patronomic = PatronomicTxt.Text;
-            User.Phone = new string(PhoneTxt.Text.Where(t => Char.IsDigit(t)).ToArray()); 
+            User.Phone = new string(PhoneTxt.Text.Where(t => Char.IsDigit(t)).ToArray());
             User.Email = EmailTxt.Text;
 
             if (Check() && CheckEmail() && CheckPhone())
             {
+                if (IsPhotoChanged) 
+                {
+                    Task<string> task = UploadImage(FilePath);
+                    task.ContinueWith(t =>
+                    {
+                        if (!task.IsFaulted)
+                        {
+                            User.Photo = task.Result;
+                        }
+                        PracticeContext.Instance.Users.Update(User);
 
+                        PracticeContext.Instance.SaveChanges();
+
+                    });
+                }
+
+             
                 PracticeContext.Instance.Users.Update(User);
+
                 PracticeContext.Instance.SaveChanges();
                 SnackbarService snackbarService = new SnackbarService();
                 snackbarService.SetSnackbarPresenter(snack);
@@ -113,7 +139,7 @@ namespace practice.Forms
             this.Close();
         }
 
-        
+
         private bool Check()
         {
             if (SurnameTxt.Text.IsNullOrEmpty() ||
@@ -130,7 +156,7 @@ namespace practice.Forms
         {
             Regex regex = new Regex(@"([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9_-]+)");
             MatchCollection matchCollection = regex.Matches(EmailTxt.Text);
-            if (matchCollection.Count<1)
+            if (matchCollection.Count < 1)
             {
                 return false;
             }
@@ -162,5 +188,50 @@ namespace practice.Forms
             }
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == true)
+            {
+                IsPhotoChanged = true;
+                FilePath = openFile.FileName;
+                ImagePhoto.Source = new BitmapImage(new Uri(FilePath, UriKind.Absolute));
+            }
+        }
+        async public static Task<string> UploadImage(string imagePath)
+        {
+            string apiUrl = "http://hnt8.ru:7563/upload"; // URL вашего сервера для загрузки изображения
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var form = new MultipartFormDataContent())
+                {
+                    // Читаем изображение из файла
+                    using (var imageStream = File.OpenRead(imagePath))
+                    {
+                        // Создаем содержимое для загрузки
+                        var imageContent = new StreamContent(imageStream);
+                        form.Add(imageContent, "image", System.IO.Path.GetFileName(imagePath)); // Параметр "image" должен соответствовать имени поля в вашем запросе
+
+                        // Отправляем POST запрос на сервер
+                        var response = await httpClient.PostAsync(apiUrl, form);
+
+                        // Проверяем ответ
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseContent = await response.Content.ReadAsStringAsync();
+                            JObject obj = JObject.Parse(responseContent);
+                            return obj["imageUrl"].ToString();
+                            
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

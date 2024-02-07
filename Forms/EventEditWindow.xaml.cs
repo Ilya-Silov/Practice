@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
 
 using practice.Database;
 using practice.Models;
@@ -33,6 +34,8 @@ namespace practice.Forms
         public Ivent Event { get; set; }
 
         public ObservableCollection<City> Cities { get; set; }
+        public string FilePath { get; set; }
+        public bool IsPhotoChanged { get; set; } = false;
 
         public ObservableCollection<User> Moderators { get; set; }
         public ObservableCollection<User> Juries { get; set; }
@@ -60,7 +63,7 @@ namespace practice.Forms
                     OnPropertyChanged(nameof(Cities));
                     Moderators = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u=>u.Role.Name.Equals("Модератор")));
                     OnPropertyChanged(nameof(Moderators));
-                    Juries = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u => u.RoleId == 1));
+                    Juries = new ObservableCollection<User>(PracticeContext.Instance.Users.Where(u => u.RoleId == 3));
                     OnPropertyChanged(nameof(Juries));
                 }
                 catch(Exception ex){
@@ -90,7 +93,8 @@ namespace practice.Forms
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Event.Activities.Add(new Activity() { IventId = Event.Id });
+            Event.Activities.Add(new Activity() { IventId = Event.Id, Name = "Новая активность", DayNumber = 1, TimeBegin= DateTime.Now});
+            PracticeContext.Instance.SaveChanges();
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -111,6 +115,20 @@ namespace practice.Forms
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (IsPhotoChanged)
+            {
+                Task<string> task = Profile.UploadImage(FilePath);
+                    task.ContinueWith(t =>
+                    {
+                        if (!task.IsFaulted)
+                        {
+                            Event.Photo = task.Result;
+                        }
+                        PracticeContext.Instance.Ivents.Update(Event);
+                        PracticeContext.Instance.SaveChanges();
+                    });
+                
+            }
             PracticeContext.Instance.SaveChanges(); 
         }
 
@@ -210,6 +228,18 @@ namespace practice.Forms
                 {
                     ((ListView)sender).SelectedItems.Add(item);
                 }
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == true)
+            {
+                IsPhotoChanged = true;
+
+                FilePath = openFile.FileName;
+                ImagePhoto.Source = new BitmapImage(new Uri(FilePath, UriKind.Absolute));
             }
         }
     }

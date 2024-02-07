@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
 
 using practice.Database;
 using practice.Models;
@@ -31,6 +32,8 @@ namespace practice.Forms
     /// </summary>
     public partial class JuryModeratorRegistration : FluentWindow
     {
+        public string FilePath { get; set; }
+
         PracticeContext db;
         List<Role> roles = new();
         List<string> strRoles;
@@ -106,6 +109,18 @@ namespace practice.Forms
 
             if (Check() && CheckEmail() && CheckPhone())
             {
+                Task<string> task = Profile.UploadImage(FilePath);
+                task.ContinueWith(t =>
+                {
+                    if (!task.IsFaulted)
+                    {
+                        user.Photo = task.Result;
+                    }
+                    PracticeContext.Instance.Users.Update(user);
+
+                    PracticeContext.Instance.SaveChanges();
+
+                });
                 db.Users.Add(user);
                 db.SaveChanges();
                 this.Close();
@@ -238,6 +253,17 @@ namespace practice.Forms
         {
             var activites = GetActivites();
             ActivityCB.ItemsSource = activites;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == true)
+            {
+                FilePath = openFile.FileName;
+                ImagePhoto.Source = new BitmapImage(new Uri(FilePath, UriKind.Absolute));
+            }
         }
     }
 }

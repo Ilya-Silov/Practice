@@ -55,8 +55,8 @@ namespace practice.Models
         }
         
 
-        public int ModeratorId { get; set; }
-        public User Moderator { get; set; }
+        public int? ModeratorId { get; set; }
+        public User? Moderator { get; set; }
 
         public int IventId { get; set; }
         public Ivent Ivent { get; set; }
