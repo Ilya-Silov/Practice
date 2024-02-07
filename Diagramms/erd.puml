@@ -1,0 +1,101 @@
+@startuml
+
+entity "Cites" {
+  + Id INT
+  Name TEXT
+  --
+  PK_Cites
+}
+
+entity "Countries" {
+  + Id INT
+  Name TEXT
+  EngName TEXT
+  Acronym TEXT DEFAULT ''
+  --
+  PK_Countries
+}
+
+entity "Directions" {
+  + Id INT
+  Name TEXT
+  --
+  PK_Directions
+}
+
+entity "Roles" {
+  + Id INT
+  Name TEXT
+  --
+  PK_Roles
+}
+
+entity "Users" {
+  + Id INT
+  RoleId INT
+  Name TEXT
+  Surname TEXT
+  Patronomic TEXT
+  Email TEXT
+  Gender TEXT
+  Birthday TIMESTAMPTZ
+  CountryID INT
+  Phone TEXT
+  DirectionId INT
+  Password TEXT
+  Photo TEXT
+  --
+  PK_Users
+  FK_Users_Roles_RoleId
+  FK_Users_Countries_CountryID
+  FK_Users_Directions_DirectionId
+}
+
+entity "Ivents" {
+  + Id INT
+  Name TEXT
+  DateBegin TIMESTAMPTZ
+  AmountDays INT
+  Photo TEXT
+  CityId INT
+  WinnerId INT
+  --
+  PK_Ivents
+  FK_Ivents_Cites_CityId
+  FK_Ivents_Users_WinnerId
+}
+
+entity "Activites" {
+  + ID INT
+  Name TEXT
+  DayNumber INT
+  TimeBegin TIMESTAMPTZ
+  ModeratorId INT
+  IventId INT
+  --
+  PK_Activites
+  FK_Activites_Ivents_IventId
+  FK_Activites_Users_ModeratorId
+}
+
+entity "ActivityJures" {
+  + JuryID INT
+  + ActivityId INT
+  + id INT
+  + Rate Numeric
+  --
+  activityjures_pk
+  FK_ActivityJures_Activites_ActivityId
+  FK_ActivityJures_Users_JuryID
+}
+
+Cites --{ Ivents
+Countries --{ Users
+Directions --{ Users
+Roles --{ Users 
+Users --{ Activites 
+Users --{ Ivents 
+Ivents --{ Activites
+Activites --{ ActivityJures
+
+@enduml
