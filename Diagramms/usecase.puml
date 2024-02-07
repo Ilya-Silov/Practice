@@ -1,0 +1,39 @@
+@startuml uc
+
+left to right direction
+
+actor "Участник" as participant
+actor "Модератор" as moderator
+actor "Организатор" as organizer
+actor "Жюри" as jury
+actor "Неавторизованный\nпользователь" as unauth
+
+rectangle "Система" {
+  unauth -- (Просмотреть мероприяти)
+  unauth -- (Авторизация)
+
+
+  participant -- (Просмотреть мероприяти)
+  participant -- (редактировать профиль)
+
+
+  moderator -- (Выбрать активность для модерации)
+  moderator -- (редактировать профиль)
+
+
+  organizer -- (изменить модераторов)
+  organizer -- (изменять информацией об активностях)
+  organizer -- (изменять информацией о мероприятии)
+  organizer -- (Добавить мероприятие)
+  organizer -- (Добавить активность)
+  organizer -- (Регистрация пользователей)
+  organizer -- (редактировать профиль)
+
+
+  jury -- (Просматривать информацию об активностях)
+  jury -- (Оценивать участников)
+  jury -- (редактировать профиль)
+
+}
+
+@enduml
