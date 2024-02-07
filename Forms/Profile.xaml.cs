@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -59,15 +60,23 @@ namespace practice.Forms
             User.Surname = SurnameTxt.Text;
             User.Name = NameTxt.Text;
             User.Patronomic = PatronomicTxt.Text;
-            User.Phone = PhoneTxt.Text;
+            User.Phone = new string(PhoneTxt.Text.Where(t => Char.IsDigit(t)).ToArray()); 
             User.Email = EmailTxt.Text;
 
-            if (Check())
+            if (Check() && CheckEmail() && CheckPhone())
             {
 
                 PracticeContext.Instance.Users.Update(User);
                 PracticeContext.Instance.SaveChanges();
-                return;
+                SnackbarService snackbarService = new SnackbarService();
+                snackbarService.SetSnackbarPresenter(snack);
+                snackbarService.Show(
+                    "Готов",
+                    "Данные профиля обновлены",
+                    ControlAppearance.Success,
+                    new SymbolIcon(SymbolRegular.Checkmark12),
+                    TimeSpan.FromSeconds(3)
+                    );
             }
             else
             {
@@ -75,7 +84,7 @@ namespace practice.Forms
                 snackbarService.SetSnackbarPresenter(snack);
                 snackbarService.Show(
                     "Ошибка",
-                    "Заполните все поля",
+                    "Правильно заполните все поля",
                     ControlAppearance.Danger,
                     new SymbolIcon(SymbolRegular.SlideText16),
                     TimeSpan.FromSeconds(3)
@@ -117,7 +126,24 @@ namespace practice.Forms
             }
             return true;
         }
-        
+        private bool CheckEmail()
+        {
+            Regex regex = new Regex(@"([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9_-]+)");
+            MatchCollection matchCollection = regex.Matches(EmailTxt.Text);
+            if (matchCollection.Count<1)
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool CheckPhone()
+        {
+            if (User.Phone.Length < 11)
+            {
+                return false;
+            }
+            return true;
+        }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

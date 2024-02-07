@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Wpf.Ui;
 using Wpf.Ui.Controls;
 
 using MessageBox = System.Windows.MessageBox;
@@ -97,21 +99,28 @@ namespace practice.Forms
         {
             user.Surname = SurnameTxt.Text;
             user.Name = NameTxt.Text;
-            user.Patronomic = PatronomicTxt.Text;
-            user.Phone = PhoneTxt.Text;
+            user.Patronomic = PatronomicTxt.Text;            
+            user.Phone = new string(PhoneTxt.Text.Where(t => Char.IsDigit(t)).ToArray());
             user.Email = EmailTxt.Text;
             user.Password = passBox.Password;
 
-            if (Check())
+            if (Check() && CheckEmail() && CheckPhone())
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                this.Close();
             }
             else 
-            {
-                MessageBox.Show(
-        "Заполните все поля",
-        "Сообщение");
+            {  
+                SnackbarService snackbarService = new SnackbarService();
+                snackbarService.SetSnackbarPresenter(snack);
+                snackbarService.Show(
+                    "Ошибка",
+                    "Правильно заполните все поля",
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.SlideText16),
+                    TimeSpan.FromSeconds(3)
+                    );
             }
    
 
@@ -177,6 +186,24 @@ namespace practice.Forms
                 PhoneTxt.Text.IsNullOrEmpty() || 
                 EmailTxt.Text.IsNullOrEmpty() || 
                 passBox.Password.IsNullOrEmpty())
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool CheckEmail()
+        {
+            Regex regex = new Regex(@"([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9_-]+)");
+            MatchCollection matchCollection = regex.Matches(EmailTxt.Text);
+            if (matchCollection.Count < 1)
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool CheckPhone()
+        {
+            if (user.Phone.Length < 11)
             {
                 return false;
             }

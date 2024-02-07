@@ -11,7 +11,6 @@
         ExtendsContentIntoTitleBar ="True"
         WindowBackdropType="Mica"
         Title="Авторизация" MinHeight="700" Height="700" Width="400" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/пципиа.png" >
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50px"/>
@@ -56,9 +55,9 @@
             <ui:PasswordBox x:Name="password"  Grid.Column="1" Grid.Row="5" Margin="5 10 5 10" PlaceholderText="Введите пароль"/>
 
             <TextBlock Grid.Column="1" Grid.Row="6" Text="Капча" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 20 0"/>
-            <StackPanel Orientation="Horizontal" Cursor="">
-                <capt:Captcha Grid.Row="7" Grid.Column="1" x:Name="MyCaptcha" Background="Black" Foreground="Black" Margin="0 0 0 20" VerticalAlignment="Stretch"/>
-                <ui:Button Grid.Row="7" Grid.Column="2" Content="Обновить" Click="Button_Click" VerticalAlignment="Stretch"></ui:Button>
+            <StackPanel Orientation="Horizontal" Cursor="" Margin="0 0 0 10">
+                <capt:Captcha Grid.Row="7" Grid.Column="1" x:Name="MyCaptcha" Background="Black" Foreground="Black" VerticalAlignment="Center"/>
+                <ui:Button Grid.Row="7" Grid.Column="2" Icon="{ui:SymbolIcon ArrowClockwise12}" Click="Button_Click" VerticalAlignment="Stretch"></ui:Button>
             </StackPanel>
             <ui:TextBox x:Name="txtCapt" Grid.Column="1" Grid.Row="8" PlaceholderText="Введите капчу"/>
             <CheckBox Content="skip capt" Name="skipcapt"/>

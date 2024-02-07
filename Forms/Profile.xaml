@@ -14,7 +14,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ui:SnackbarPresenter Name="snack" Panel.ZIndex="99"/>
+        <ui:SnackbarPresenter Name="snack" Panel.ZIndex="99" VerticalAlignment="Bottom" Grid.Row="1"/>
         <ui:TitleBar Grid.Row="0" Title="{Binding Title}" Margin="0">
             <ui:TitleBar.Icon>
                 <ui:ImageIcon Source="pack://application:,,,/пципиа.png" />
@@ -92,8 +92,8 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1"  Content="Ок" FontSize="16" FontWeight="Bold" Click="Button_Click"  Margin="0 0 5 5"/>
-            <Button  Grid.Column="2" Content="Отмена" FontSize="16" FontWeight="Bold" Click="Button_Click_1"  Margin="0 0 5 5"/>
+            <Button Grid.Column="1" VerticalAlignment="Bottom"  Content="Ок" FontSize="16" FontWeight="Bold" Click="Button_Click"  Margin="0 0 5 5"/>
+            <Button  Grid.Column="2" VerticalAlignment="Bottom"  Content="Отмена" FontSize="16" FontWeight="Bold" Click="Button_Click_1"  Margin="0 0 5 5"/>
         </Grid>
     </Grid>
 </ui:FluentWindow>
