@@ -2,8 +2,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +24,7 @@ namespace practice.Forms
     /// <summary>
     /// Логика взаимодействия для Organizator.xaml
     /// </summary>
-    public partial class Organizator : FluentWindow
+    public partial class Organizator : FluentWindow, INotifyPropertyChanged
     {
         public User User { get; set; }
 
@@ -43,6 +45,7 @@ namespace practice.Forms
         {
             Profile profile = new Profile(User);
             profile.ShowDialog();
+            OnPropertyChanged(nameof(User));
         }
 
         
@@ -91,6 +94,13 @@ namespace practice.Forms
                     return "Доброй ночи";
                 }
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

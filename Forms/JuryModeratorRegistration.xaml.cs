@@ -200,7 +200,12 @@ namespace practice.Forms
                 PatronomicTxt.Text.IsNullOrEmpty() || 
                 PhoneTxt.Text.IsNullOrEmpty() || 
                 EmailTxt.Text.IsNullOrEmpty() || 
-                passBox.Password.IsNullOrEmpty())
+                passBox.Password.IsNullOrEmpty() ||
+                string.IsNullOrWhiteSpace(SurnameTxt.Text) ||
+                string.IsNullOrWhiteSpace(NameTxt.Text) ||
+                string.IsNullOrWhiteSpace(PatronomicTxt.Text) ||
+                string.IsNullOrWhiteSpace(PhoneTxt.Text) ||
+                string.IsNullOrWhiteSpace(passBox.Password))
             {
                 return false;
             }
@@ -208,7 +213,7 @@ namespace practice.Forms
         }
         private bool CheckEmail()
         {
-            Regex regex = new Regex(@"([a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-zA-Z0-9_-]+)");
+            Regex regex = new Regex(@"([А-Яа-яa-zA-Z0-9.-]+@[А-Яа-яa-zA-Z0-9.-]+.[А-Яа-яa-zA-Z0-9_-]+)");
             MatchCollection matchCollection = regex.Matches(EmailTxt.Text);
             if (matchCollection.Count < 1)
             {

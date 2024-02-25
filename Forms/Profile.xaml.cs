@@ -90,19 +90,34 @@ namespace practice.Forms
                     });
                 }
 
-             
-                PracticeContext.Instance.Users.Update(User);
+                try
+                {
+                    PracticeContext.Instance.Users.Update(User);
 
-                PracticeContext.Instance.SaveChanges();
-                SnackbarService snackbarService = new SnackbarService();
-                snackbarService.SetSnackbarPresenter(snack);
-                snackbarService.Show(
-                    "Готов",
-                    "Данные профиля обновлены",
-                    ControlAppearance.Success,
-                    new SymbolIcon(SymbolRegular.Checkmark12),
-                    TimeSpan.FromSeconds(3)
-                    );
+                    PracticeContext.Instance.SaveChanges();
+                    SnackbarService snackbarService = new SnackbarService();
+                    snackbarService.SetSnackbarPresenter(snack);
+                    snackbarService.Show(
+                        "Готов",
+                        "Данные профиля обновлены",
+                        ControlAppearance.Success,
+                        new SymbolIcon(SymbolRegular.Checkmark12),
+                        TimeSpan.FromSeconds(3)
+                        );
+                }
+                catch (Exception ex)
+                {
+                    SnackbarService snackbarService = new SnackbarService();
+                    snackbarService.SetSnackbarPresenter(snack);
+                    snackbarService.Show(
+                        "Ошибка",
+                        "Не удалось обновить данные профиля",
+                        ControlAppearance.Danger,
+                        new SymbolIcon(SymbolRegular.Checkmark12),
+                        TimeSpan.FromSeconds(3)
+                        );
+                }
+               
             }
             else
             {
@@ -146,6 +161,10 @@ namespace practice.Forms
                 NameTxt.Text.IsNullOrEmpty() ||
                 PatronomicTxt.Text.IsNullOrEmpty() ||
                 PhoneTxt.Text.IsNullOrEmpty() ||
+                string.IsNullOrWhiteSpace(SurnameTxt.Text) ||
+                string.IsNullOrWhiteSpace(NameTxt.Text) ||
+                string.IsNullOrWhiteSpace(PatronomicTxt.Text) ||
+                string.IsNullOrWhiteSpace(PhoneTxt.Text) ||
                 EmailTxt.Text.IsNullOrEmpty())
             {
                 return false;
